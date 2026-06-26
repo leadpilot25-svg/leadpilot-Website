@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LeadPilot — Lead Management System for Indian Agents | Pay Once, Use Forever</title>
+  <meta name="description" content="LeadPilot is the lead management system built for real estate agents, insurance advisors, car dealers, and loan agents in India. Pay ₹2,999 once — no monthly fees. Track leads, set follow-up reminders, close more deals from WhatsApp." />
+  <meta name="keywords" content="CRM for real estate agents, lead management system India, insurance advisor CRM, car dealer software, lead tracker" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://leadpilot-in.netlify.app/" />
+  <meta property="og:title" content="LeadPilot — Lead Management System for Indian Agents | Pay Once, Use Forever" />
+  <meta property="og:description" content="Pay ₹2,999 once — no monthly fees. Track property leads, renewals, and client inquiries from WhatsApp. Setup in 5 minutes." />
+  <meta property="og:image" content="https://leadpilot-in.netlify.app/Logo.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://leadpilot-in.netlify.app/" />
+  <meta property="twitter:title" content="LeadPilot — Lead Management System for Indian Agents | Pay Once, Use Forever" />
+  <meta property="twitter:description" content="Pay ₹2,999 once — no monthly fees. Track property leads, renewals, and client inquiries from WhatsApp. Setup in 5 minutes." />
+  <meta property="twitter:image" content="https://leadpilot-in.netlify.app/Logo.png" />
+
+  <!-- Canonical Link -->
+  <link rel="canonical" href="https://leadpilot-in.netlify.app/" />
+
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "LeadPilot",
+    "operatingSystem": "All",
+    "applicationCategory": "BusinessApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "2999",
+      "priceCurrency": "INR"
+    },
+    "description": "Lead management system built for real estate agents, insurance advisors, car dealers, and loan agents in India. Pay once, use forever.",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "1000"
+    }
+  }
+  </script>
+
+  <link rel="icon" href="Logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:         #0a0f1e;
+      --navy-2:       #111d35;
+      --navy-3:       #1a2d4f;
+      --teal:         #00c49a;
+      --teal-dark:    #00a882;
+      --teal-light:   #e6faf6;
+      --teal-mid:     #b3f0e4;
+      --white:        #ffffff;
+      --gray-50:      #f8f9fc;
+      --gray-100:     #f1f4f9;
+      --gray-200:     #e4e9f2;
+      --gray-300:     #cdd5e0;
+      --gray-500:     #7a8599;
+      --gray-700:     #3d4a5c;
+      --gray-900:     #1a2234;
+      --border:       #e4e9f2;
+      --border-dark:  #cdd5e0;
+      --red:          #ef4444;
+      --amber:        #f59e0b;
+      --blue:         #3b82f6;
+      --radius:       16px;
+      --radius-sm:    10px;
+      --radius-xs:    6px;
+      --shadow-sm:    0 1px 3px rgba(10,15,30,.06), 0 1px 2px rgba(10,15,30,.04);
+      --shadow-md:    0 4px 16px rgba(10,15,30,.08), 0 2px 6px rgba(10,15,30,.05);
+      --shadow-lg:    0 16px 40px rgba(10,15,30,.1), 0 4px 12px rgba(10,15,30,.06);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      background: var(--white);
+      color: var(--gray-900);
+      line-height: 1.6;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+
+    /* ── UTILS ── */
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+    .section-bg { background: var(--gray-50); }
+    .teal { color: var(--teal-dark); }
+    .navy { color: var(--navy); }
+
+    .label-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--teal-light); border: 1px solid var(--teal-mid);
+      color: var(--teal-dark); font-size: 12px; font-weight: 700;
+      padding: 5px 14px; border-radius: 99px;
+      text-transform: uppercase; letter-spacing: .08em;
+      margin-bottom: 18px;
+    }
+    h2.s-title {
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 800; color: var(--navy);
+      line-height: 1.15; margin-bottom: 14px;
+    }
+    .s-sub {
+      font-size: 17px; color: var(--gray-500);
+      max-width: 580px; line-height: 1.75; margin-bottom: 48px;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 26px; border-radius: var(--radius-sm);
+      font-size: 15px; font-weight: 700;
+      text-decoration: none; cursor: pointer; border: none;
+      transition: all .2s; white-space: nowrap;
+      font-family: inherit;
+    }
+    .btn-teal {
+      background: var(--teal); color: var(--white);
+      box-shadow: 0 4px 14px rgba(0,196,154,.3);
+    }
+    .btn-teal:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,196,154,.35); }
+    .btn-navy {
+      background: var(--navy); color: var(--white);
+      box-shadow: var(--shadow-md);
+    }
+    .btn-navy:hover { background: var(--navy-2); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; border: 1.5px solid var(--border-dark);
+      color: var(--gray-700);
+    }
+    .btn-outline:hover { border-color: var(--teal); color: var(--teal-dark); background: var(--teal-light); }
+    .btn-wa { background: #25d366; color: #fff; box-shadow: 0 4px 14px rgba(37,211,102,.3); }
+    .btn-wa:hover { background: #1db954; transform: translateY(-2px); }
+
+    /* ── URGENCY BAR ── */
+    .urgency-bar {
+      background: var(--navy);
+      padding: 10px 24px; text-align: center;
+      font-size: 13px; font-weight: 600; color: rgba(255,255,255,.75);
+    }
+    .urgency-bar .ub-teal { color: var(--teal); font-weight: 800; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+    }
+    .nav-inner {
+      max-width: 1120px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; height: 66px; gap: 32px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 34px; border-radius: 8px; }
+    .nav-logo span { font-size: 17px; font-weight: 800; color: var(--navy); }
+    .nav-links { display: flex; gap: 26px; list-style: none; margin-left: auto; }
+    .nav-links a { color: var(--gray-500); text-decoration: none; font-size: 14px; font-weight: 600; transition: color .2s; }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-ctas { display: flex; gap: 10px; }
+    .nav-ctas .btn { padding: 9px 20px; font-size: 13px; }
+    @media(max-width:768px){ .nav-links { display:none; } .nav-ctas .btn-outline { display:none; } }
+
+    /* ── HERO ── */
+    .hero-wrap {
+      background: linear-gradient(160deg, var(--gray-50) 0%, var(--white) 60%);
+      border-bottom: 1px solid var(--border);
+      padding: 88px 0 72px;
+      position: relative; overflow: hidden;
+    }
+    .hero-accent {
+      position: absolute; top: -120px; right: -80px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(0,196,154,.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-accent-2 {
+      position: absolute; bottom: -80px; left: -60px;
+      width: 360px; height: 360px; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(10,15,30,.04) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center; position: relative; z-index: 1;
+    }
+    @media(max-width:860px){ .hero-grid { grid-template-columns:1fr; } .hero-app { display:none; } }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--teal-light); border: 1px solid var(--teal-mid);
+      color: var(--teal-dark); font-size: 12px; font-weight: 700;
+      padding: 5px 14px; border-radius: 99px; margin-bottom: 22px;
+      text-transform: uppercase; letter-spacing: .08em;
+    }
+    h1 {
+      font-size: clamp(32px, 4.5vw, 52px);
+      font-weight: 800; line-height: 1.1;
+      color: var(--navy); margin-bottom: 22px;
+      letter-spacing: -.02em;
+    }
+    h1 em { font-style: normal; color: var(--teal-dark); }
+    .hero-sub {
+      font-size: 17px; color: var(--gray-500);
+      line-height: 1.75; margin-bottom: 32px; max-width: 500px;
+    }
+    .hero-sub strong { color: var(--gray-900); }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+    .hero-trust { display: flex; flex-wrap: wrap; gap: 18px; }
+    .hero-trust span { font-size: 13px; color: var(--gray-500); display: flex; align-items: center; gap: 6px; }
+    .hero-trust span::before { content: '✓'; color: var(--teal-dark); font-weight: 800; }
+
+    /* Hero app mockup */
+    .hero-app {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .app-header {
+      background: var(--navy); padding: 14px 18px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .app-header-title { font-size: 13px; font-weight: 700; color: rgba(255,255,255,.85); }
+    .app-live-badge {
+      background: rgba(0,196,154,.2); color: var(--teal);
+      font-size: 11px; font-weight: 700; padding: 3px 10px;
+      border-radius: 99px; border: 1px solid rgba(0,196,154,.3);
+    }
+    .app-body { padding: 16px; }
+    .lead-row {
+      display: flex; align-items: center; gap: 11px;
+      padding: 10px 12px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      margin-bottom: 8px; background: var(--white);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .lead-row:hover { border-color: var(--teal-mid); box-shadow: var(--shadow-sm); }
+    .av {
+      width: 34px; height: 34px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; flex-shrink: 0; color: #fff;
+    }
+    .lead-info { flex: 1; }
+    .lead-nm { font-size: 13px; font-weight: 700; color: var(--gray-900); }
+    .lead-mt { font-size: 11px; color: var(--gray-500); margin-top: 1px; }
+    .status-chip {
+      font-size: 11px; font-weight: 700; padding: 3px 10px;
+      border-radius: 99px; flex-shrink: 0;
+    }
+    .chip-hot { background: #fef2f2; color: #dc2626; }
+    .chip-warm { background: #fffbeb; color: #d97706; }
+    .chip-new { background: #eff6ff; color: #2563eb; }
+    .chip-follow { background: var(--teal-light); color: var(--teal-dark); }
+    .app-stats {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 8px; margin-top: 12px;
+    }
+    .app-stat {
+      background: var(--gray-50); border: 1px solid var(--border);
+      border-radius: var(--radius-xs); padding: 10px; text-align: center;
+    }
+    .app-stat-val { font-size: 20px; font-weight: 800; color: var(--navy); }
+    .app-stat-lbl { font-size: 10px; color: var(--gray-500); margin-top: 2px; }
+    .app-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+    .app-pill {
+      background: var(--teal-light); border: 1px solid var(--teal-mid);
+      color: var(--teal-dark); font-size: 11px; font-weight: 600;
+      padding: 4px 12px; border-radius: 99px;
+    }
+
+    /* Stats bar */
+    .stats-bar { background: var(--navy); border-bottom: none; }
+    .stats-inner {
+      max-width: 1120px; margin: 0 auto; padding: 0 24px;
+      display: grid; grid-template-columns: repeat(3,1fr);
+    }
+    .hstat {
+      padding: 26px 20px; text-align: center;
+      border-right: 1px solid rgba(255,255,255,.08);
+    }
+    .hstat:last-child { border-right: none; }
+    .hstat-val { font-size: 30px; font-weight: 800; color: var(--teal); margin-bottom: 4px; }
+    .hstat-label { font-size: 13px; color: rgba(255,255,255,.5); }
+
+    /* Industry bar */
+    .ind-bar {
+      background: var(--gray-50); border-bottom: 1px solid var(--border);
+      padding: 13px 24px; text-align: center;
+      font-size: 13px; color: var(--gray-500);
+    }
+    .ind-bar strong { color: var(--gray-700); }
+
+    /* ── CARDS shared ── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      transition: border-color .25s, box-shadow .25s, transform .25s;
+    }
+    .card:hover { border-color: var(--teal-mid); box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .card.accent { border-color: var(--teal-mid); background: var(--teal-light); }
+    .card.accent:hover { border-color: var(--teal); }
+
+    /* ── PROBLEM ── */
+    .prob-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 16px; margin-top: 48px; }
+    .prob-emoji { font-size: 30px; margin-bottom: 14px; display: block; }
+    .card h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 9px; }
+    .card p { font-size: 14px; color: var(--gray-500); line-height: 1.65; }
+
+    /* ── INDUSTRY ── */
+    .industry-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 16px; margin-top: 48px; }
+    .ind-icon { font-size: 32px; margin-bottom: 14px; display: block; }
+    .card h4 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+
+    /* ── FEATURES ── */
+    .feat-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 16px; margin-top: 48px; }
+    .feat-icon-box {
+      width: 44px; height: 44px; border-radius: var(--radius-xs);
+      background: var(--teal-light); border: 1px solid var(--teal-mid);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; margin-bottom: 16px;
+    }
+
+    /* ── FREE TOOLS ── */
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 16px; margin-top: 48px; }
+    .tool-badge {
+      display: inline-block; background: var(--teal-light); color: var(--teal-dark);
+      font-size: 10px; font-weight: 800; padding: 3px 10px; border-radius: 99px;
+      margin-bottom: 12px; text-transform: uppercase; letter-spacing: .06em;
+      border: 1px solid var(--teal-mid); width: fit-content;
+    }
+    .tool-link {
+      color: var(--teal-dark); font-size: 14px; font-weight: 700;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+      transition: gap .2s;
+    }
+    .tool-link:hover { gap: 10px; }
+    .tools-cta-strip {
+      margin-top: 28px; background: var(--navy);
+      border-radius: var(--radius); padding: 24px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .tools-cta-strip p { font-size: 15px; color: rgba(255,255,255,.75); font-weight: 500; }
+    .tools-cta-strip strong { color: var(--white); }
+
+    /* ── PRICING ── */
+    .compare-wrap {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--shadow-sm); margin-bottom: 36px;
+    }
+    .compare-table { width: 100%; border-collapse: collapse; }
+    .compare-table th {
+      padding: 14px 22px; text-align: left;
+      font-size: 13px; font-weight: 700; letter-spacing: .04em;
+    }
+    .compare-table th:first-child { background: var(--gray-100); color: var(--gray-500); width: 40%; }
+    .compare-table th:nth-child(2) { background: var(--gray-100); color: var(--gray-700); text-align: center; }
+    .compare-table th:last-child { background: var(--navy); color: var(--teal); text-align: center; }
+    .compare-table td { padding: 13px 22px; font-size: 14px; border-top: 1px solid var(--border); color: var(--gray-700); }
+    .compare-table td:nth-child(2) { color: var(--gray-500); text-align: center; text-decoration: line-through; }
+    .compare-table td:last-child { color: var(--teal-dark); font-weight: 700; text-align: center; background: rgba(0,196,154,.04); }
+
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(320px,1fr)); gap: 24px; margin-bottom: 28px; }
+    .price-card {
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: var(--radius); padding: 36px;
+      position: relative; box-shadow: var(--shadow-sm);
+      transition: border-color .25s, box-shadow .25s;
+    }
+    .price-card:hover { border-color: var(--teal-mid); box-shadow: var(--shadow-md); }
+    .price-card.featured {
+      border: 2px solid var(--teal);
+      box-shadow: 0 0 0 4px rgba(0,196,154,.1), var(--shadow-lg);
+    }
+    .popular-tag {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--teal); color: var(--white);
+      font-size: 11px; font-weight: 800; padding: 4px 18px;
+      border-radius: 99px; white-space: nowrap; letter-spacing: .04em;
+    }
+    .plan-lbl { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--gray-500); margin-bottom: 10px; }
+    .plan-price { font-size: 52px; font-weight: 900; color: var(--navy); line-height: 1; margin-bottom: 4px; letter-spacing: -.02em; }
+    .plan-price sup { font-size: 22px; vertical-align: super; }
+    .plan-once { font-size: 13px; color: var(--gray-500); margin-bottom: 8px; }
+    .plan-tagline { font-size: 14px; color: var(--gray-500); margin-bottom: 26px; padding-bottom: 22px; border-bottom: 1px solid var(--border); line-height: 1.55; }
+    .plan-feats { list-style: none; margin-bottom: 30px; }
+    .plan-feats li {
+      font-size: 14px; color: var(--gray-700);
+      padding: 7px 0; display: flex; gap: 10px; align-items: flex-start;
+      border-bottom: 1px solid var(--border);
+    }
+    .plan-feats li:last-child { border-bottom: none; }
+    .plan-feats li::before { content: '✓'; color: var(--teal-dark); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+    .plan-cta-sub { font-size: 12px; color: var(--gray-500); text-align: center; margin-top: 10px; }
+
+    .price-trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; font-size: 13px; color: var(--gray-500); margin-bottom: 24px; }
+    .price-trust span::before { content: '✓ '; color: var(--teal-dark); font-weight: 800; }
+
+    .urgency-seats {
+      text-align: center; background: #fffbeb;
+      border: 1px solid #fde68a; border-radius: var(--radius-sm);
+      padding: 12px 20px; font-size: 14px; color: #92400e;
+      font-weight: 600; margin-bottom: 32px;
+    }
+
+    .roi-box {
+      background: var(--gray-50); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow-sm);
+    }
+    .roi-box h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .roi-box p { font-size: 14px; color: var(--gray-500); margin-bottom: 20px; line-height: 1.7; }
+    .roi-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 12px; }
+    .roi-item { background: var(--white); border-radius: var(--radius-sm); padding: 14px 16px; border: 1px solid var(--border); }
+    .roi-type { font-size: 12px; color: var(--gray-500); margin-bottom: 4px; }
+    .roi-val { font-size: 16px; font-weight: 800; color: var(--teal-dark); }
+
+    /* ── HOW IT WORKS ── */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 28px; margin-top: 48px; }
+    .step { text-align: center; }
+    .step-num {
+      width: 48px; height: 48px;
+      background: var(--teal-light); border: 2px solid var(--teal-mid);
+      color: var(--teal-dark); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 800; margin: 0 auto 16px;
+    }
+    .step h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .step p { font-size: 13px; color: var(--gray-500); line-height: 1.6; }
+
+    /* ── TESTIMONIALS ── */
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 20px; margin-top: 48px; }
+    .testi-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow-sm);
+      transition: border-color .25s, box-shadow .25s;
+    }
+    .testi-card:hover { border-color: var(--teal-mid); box-shadow: var(--shadow-md); }
+    .stars { color: #f59e0b; font-size: 14px; letter-spacing: 2px; margin-bottom: 16px; }
+    .testi-card blockquote { font-size: 15px; color: var(--gray-700); line-height: 1.75; margin-bottom: 22px; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-av { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0; color: #fff; }
+    .testi-name { font-size: 14px; font-weight: 700; color: var(--navy); }
+    .testi-role { font-size: 12px; color: var(--gray-500); }
+
+    /* ── FAQ ── */
+    .faq-list { max-width: 720px; margin: 48px auto 0; }
+    .faq-item {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); margin-bottom: 8px;
+      overflow: hidden; box-shadow: var(--shadow-sm);
+      transition: border-color .2s;
+    }
+    .faq-item:hover { border-color: var(--teal-mid); }
+    .faq-q {
+      width: 100%; background: none; border: none;
+      padding: 18px 22px; text-align: left;
+      font-size: 15px; font-weight: 600; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      color: var(--navy); font-family: inherit;
+    }
+    .faq-q:hover { background: var(--gray-50); }
+    .faq-icon { font-size: 22px; color: var(--teal-dark); transition: transform .2s; flex-shrink: 0; }
+    .faq-q.open .faq-icon { transform: rotate(45deg); }
+    .faq-a { display: none; padding: 0 22px 18px; font-size: 14px; color: var(--gray-500); line-height: 1.75; }
+    .faq-a.open { display: block; }
+
+    /* ── FINAL CTA ── */
+    .final-wrap { background: var(--navy); }
+    .final-inner {
+      max-width: 700px; margin: 0 auto;
+      padding: 96px 24px; text-align: center;
+    }
+    .final-inner h2 { font-size: clamp(28px,4vw,44px); font-weight: 900; color: var(--white); margin-bottom: 16px; line-height: 1.15; }
+    .final-inner h2 em { font-style: normal; color: var(--teal); }
+    .final-inner p { font-size: 17px; color: rgba(255,255,255,.65); margin-bottom: 36px; line-height: 1.75; }
+    .final-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 26px; }
+    .final-trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; font-size: 13px; color: rgba(255,255,255,.4); }
+    .final-trust span::before { content: '✓ '; color: var(--teal); font-weight: 800; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--gray-50); border-top: 1px solid var(--border); padding: 56px 24px 28px; }
+    .footer-inner { max-width: 1120px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: 2fr repeat(3,1fr); gap: 48px; margin-bottom: 40px; }
+    @media(max-width:768px){ .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; } }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .footer-logo img { height: 30px; border-radius: 6px; }
+    .footer-logo span { font-size: 17px; font-weight: 800; color: var(--navy); }
+    .footer-brand p { font-size: 14px; color: var(--gray-500); line-height: 1.7; max-width: 240px; }
+    footer h5 { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--gray-500); margin-bottom: 14px; }
+    footer ul { list-style: none; }
+    footer ul li { margin-bottom: 9px; }
+    footer ul a { color: var(--gray-700); text-decoration: none; font-size: 14px; transition: color .2s; }
+    footer ul a:hover { color: var(--teal-dark); }
+    .footer-bottom {
+      border-top: 1px solid var(--border); padding-top: 22px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 10px; font-size: 13px; color: var(--gray-500);
+    }
+  </style>
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1476301700916303');
+  fbq('track', 'PageView');
+  </script>
+  <!-- End Meta Pixel Code -->
+
+</head>
+<body>
+
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1476301700916303&ev=PageView&noscript=1"
+  /></noscript>
+
+<!-- URGENCY BAR -->
+<div class="urgency-bar">
+  🔥 Founding member offer — First 50 customers get lifetime access at launch price. &nbsp;<span class="ub-teal">43 spots remaining.</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="Logo.png" alt="LeadPilot" />
+      <span>LeadPilot</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#tools">Free Tools</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-ctas">
+      <a href="#pricing" class="btn btn-outline">View Plans</a>
+      <a href="https://wa.me/917736037807?text=Hi%2C+I+want+to+try+LeadPilot+free" class="btn btn-teal" target="_blank">Start Free Trial →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-wrap">
+  <div class="hero-accent"></div>
+  <div class="hero-accent-2"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow">🇮🇳 Built for Indian agents</div>
+        <h1>Stop Paying<br>₹1,000/Month.<br>Pay <em>₹2,999 Once.</em><br>Use It Forever.</h1>
+        <p class="hero-sub">The lead management system built for Indian agents — real estate, insurance, cars, loans, and coaching. Track every lead, never miss a follow-up, close more deals. <strong>No monthly fees. Ever.</strong></p>
+        <div class="hero-ctas">
+          <a href="https://wa.me/917736037807?text=Hi%2C+I+want+to+try+LeadPilot+free" class="btn btn-teal" target="_blank">Start Free Trial — No Card Needed →</a>
+          <a href="#how" class="btn btn-outline">See 2-Min Demo</a>
+        </div>
+        <div class="hero-trust">
+          <span>Free trial, no credit card</span>
+          <span>Setup in 5 minutes</span>
+          <span>Pay once, yours forever</span>
+        </div>
+      </div>
+
+      <!-- App mockup -->
+      <div class="hero-app">
+        <div class="app-header">
+          <span class="app-header-title">📋 Today's Leads — Live</span>
+          <span class="app-live-badge">● Live</span>
+        </div>
+        <div class="app-body">
+          <div class="lead-row">
+            <div class="av" style="background:var(--teal);">RK</div>
+            <div class="lead-info"><div class="lead-nm">Rahul Kapoor</div><div class="lead-mt">3BHK Powai · WhatsApp</div></div>
+            <span class="status-chip chip-hot">🔥 Hot</span>
+          </div>
+          <div class="lead-row">
+            <div class="av" style="background:#8b5cf6;">PS</div>
+            <div class="lead-info"><div class="lead-nm">Priya Sharma</div><div class="lead-mt">Plot Thane · Called</div></div>
+            <span class="status-chip chip-warm">Warm</span>
+          </div>
+          <div class="lead-row">
+            <div class="av" style="background:#3b82f6;">AM</div>
+            <div class="lead-info"><div class="lead-nm">Anil Mehta</div><div class="lead-mt">2BHK Andheri · New</div></div>
+            <span class="status-chip chip-new">New</span>
+          </div>
+          <div class="lead-row">
+            <div class="av" style="background:#f472b6;">SJ</div>
+            <div class="lead-info"><div class="lead-nm">Sunita Joshi</div><div class="lead-mt">Villa Navi Mumbai</div></div>
+            <span class="status-chip chip-follow">Follow-up</span>
+          </div>
+          <div class="app-stats">
+            <div class="app-stat"><div class="app-stat-val">24</div><div class="app-stat-lbl">Active Leads</div></div>
+            <div class="app-stat"><div class="app-stat-val">6</div><div class="app-stat-lbl">Due Today</div></div>
+            <div class="app-stat"><div class="app-stat-val">3</div><div class="app-stat-lbl">Closed</div></div>
+          </div>
+          <div class="app-pills">
+            <span class="app-pill">💬 WhatsApp synced</span>
+            <span class="app-pill">✅ Reminders active</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="hstat"><div class="hstat-val">₹0/mo</div><div class="hstat-label">After one-time purchase</div></div>
+    <div class="hstat"><div class="hstat-val">5 min</div><div class="hstat-label">Average setup time</div></div>
+    <div class="hstat"><div class="hstat-val">3×</div><div class="hstat-label">Follow-up rate improvement</div></div>
+  </div>
+</div>
+
+<!-- INDUSTRY BAR -->
+<div class="ind-bar">
+  <strong>Trusted by professionals across India:</strong> &nbsp; 🏠 <a href="real-estate.html" style="color: inherit; text-decoration: none; font-weight: 600;">Real Estate</a> &nbsp;·&nbsp; 🛡️ <a href="insurance.html" style="color: inherit; text-decoration: none; font-weight: 600;">Insurance</a> &nbsp;·&nbsp; 🚗 <a href="cars.html" style="color: inherit; text-decoration: none; font-weight: 600;">Car Dealers</a> &nbsp;·&nbsp; 💰 <a href="loans.html" style="color: inherit; text-decoration: none; font-weight: 600;">Loan Agents</a> &nbsp;·&nbsp; 🎓 <a href="coaches.html" style="color: inherit; text-decoration: none; font-weight: 600;">Coaches</a> &nbsp;·&nbsp; 🏫 Institutes
+</div>
+
+<!-- PROBLEM -->
+<section class="section">
+  <div class="container">
+    <div class="label-pill">The problem</div>
+    <h2 class="s-title">You're Losing Deals<br>You Already Paid For</h2>
+    <p class="s-sub">Every lead costs you money. Most agents lose 40–60% of their pipeline not because the lead wasn't interested — but because the follow-up never happened.</p>
+    <div class="prob-grid">
+      <div class="card"><span class="prob-emoji">📱</span><h3>The WhatsApp Graveyard</h3><p>You have 200 WhatsApp contacts. 40 were serious leads. You can't remember who said what, when you last spoke, or who needs a follow-up today.</p></div>
+      <div class="card"><span class="prob-emoji">📊</span><h3>The Excel Trap</h3><p>Your sheet has 300 rows. You haven't opened it in 4 days. You don't know which source brought your last closed deal.</p></div>
+      <div class="card accent"><span class="prob-emoji">💸</span><h3>The ₹12,000/Year Problem</h3><p>You tried a lead management system. ₹1,000/month. Used it 3 months, stopped. Your leads? Still locked behind a paywall you're no longer paying.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="section section-bg">
+  <div class="container">
+    <div class="label-pill">Who it's for</div>
+    <h2 class="s-title">Built for the Way<br>Indian Agents Actually Work</h2>
+    <p class="s-sub">WhatsApp-first. Mobile-first. Follow-up-first. No laptop required.</p>
+    <div class="industry-grid">
+      <div class="card" onclick="window.location.href='real-estate.html'" style="cursor:pointer;"><span class="ind-icon">🏠</span><h4>Real Estate Agents</h4><p>Track property leads from inquiry to token. Know who's ready to buy — without scrolling through 12 WhatsApp threads.</p></div>
+      <div class="card" onclick="window.location.href='insurance.html'" style="cursor: pointer;"><span class="ind-icon">🛡️</span><h4>Insurance Agents</h4><p>Never miss a renewal, lapsed policy, or fresh referral. LeadPilot reminds you before the client looks elsewhere.</p></div>
+      <div class="card" onclick="window.location.href='cars.html'" style="cursor: pointer;"><span class="ind-icon">🚗</span><h4>Car Dealers</h4><p>Track test drives, call history, and price negotiations. Follow up before your competitor does.</p></div>
+      <div class="card" onclick="window.location.href='loans.html'" style="cursor: pointer;"><span class="ind-icon">💰</span><h4>Loan Consultants</h4><p>CIBIL check, documents, bank submission, disbursement — know exactly where every application stands.</p></div>
+      <div class="card" onclick="window.location.href='coaches.html'" style="cursor: pointer;"><span class="ind-icon">🎓</span><h4>Coaches &amp; Trainers</h4><p>Track every conversation from first DM to paid enrollment. Discovery calls, batch inquiries, referrals — all organised.</p></div>
+      <div class="card"><span class="ind-icon">🏫</span><h4>Institutes &amp; Academies</h4><p>Track every inquiry, assign to counselors, follow up on fence-sitters, and fill your seats faster.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="label-pill">Features</div>
+    <h2 class="s-title">Every Feature You Need.<br>Nothing You Don't.</h2>
+    <p class="s-sub">No bloated enterprise lead management system. No 6-month onboarding. Just the tools that help you close more deals.</p>
+    <div class="feat-grid">
+      <div class="card"><div class="feat-icon-box">📋</div><h3>Smart Lead Pipeline</h3><p>Every lead, every stage, every status — on one screen. Hot leads at top. Closed deals counted. Always know where your money is.</p></div>
+      <div class="card"><div class="feat-icon-box">💬</div><h3>WhatsApp One-Tap Follow-Up</h3><p>Open any lead's WhatsApp in one tap. Log what was said. Set the next reminder. History attached to the lead, not buried in chats.</p></div>
+      <div class="card"><div class="feat-icon-box">⏰</div><h3>Smart Follow-Up Reminders</h3><p>Get notified at the exact time you need to call. Stop relying on memory. Never let a hot lead go cold again.</p></div>
+      <div class="card"><div class="feat-icon-box">📞</div><h3>Call Tracking &amp; Notes</h3><p>Log every call. Write what was discussed. See the full history before you call back — even after 3 weeks.</p></div>
+      <div class="card"><div class="feat-icon-box">📊</div><h3>Sales Dashboard</h3><p>Conversion rate. Follow-up completion. Pipeline value. Lead sources. See what's generating revenue and what's wasting time.</p></div>
+      <div class="card"><div class="feat-icon-box">📁</div><h3>Lead Source Tracking</h3><p>Facebook Ads vs referrals vs walk-ins — who actually closes? Stop spending money on sources that don't convert.</p></div>
+      <div class="card"><div class="feat-icon-box">🎯</div><h3>Industry-Specific Fields</h3><p>Real estate gets BHK fields. Insurance gets renewal dates. Car dealers get test drive dates. Fits your workflow from day one.</p></div>
+      <div class="card"><div class="feat-icon-box">📱</div><h3>Mobile-First Design</h3><p>Update leads between meetings. Log call notes from the field. Check your pipeline from anywhere. No laptop needed.</p></div>
+      <div class="card"><div class="feat-icon-box">🔒</div><h3>Secure &amp; Private</h3><p>All data encrypted and stored securely. Only you and your team have access. Your leads are yours — always.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FREE TOOLS -->
+<section class="section section-bg" id="tools">
+  <div class="container">
+    <div class="label-pill">Free Tools</div>
+    <h2 class="s-title">6 Free Tools for Indian Agents<br>— No Sign-Up Required</h2>
+    <p class="s-sub">Use them today. Share with your team. Upgrade to LeadPilot when you're ready to manage everything in one place.</p>
+    <div class="tools-grid">
+      <div class="card" style="display:flex;flex-direction:column;">
+        <div class="tool-badge">Free</div><h4 style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:8px;">📊 Lead Tracker App</h4>
+        <p style="font-size:14px;color:var(--gray-500);line-height:1.6;flex:1;margin-bottom:16px;">A full interactive lead tracker — add leads, set follow-up dates, tag status (Hot/Warm/Cold), and export to CSV.</p>
+        <a href="tools/lead-tracker.html" class="tool-link">Open Tracker →</a>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;">
+        <div class="tool-badge">Free</div><h4 style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:8px;">💬 WhatsApp Follow-Up Scripts</h4>
+        <p style="font-size:14px;color:var(--gray-500);line-height:1.6;flex:1;margin-bottom:16px;">10 copy-paste ready templates for Real Estate, Insurance, Cars, Loans, and Coaching. Personalise in one click.</p>
+        <a href="tools/whatsapp-scripts.html" class="tool-link">Get Scripts →</a>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;">
+        <div class="tool-badge">Free</div><h4 style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:8px;">📅 Weekly Follow-Up Planner</h4>
+        <p style="font-size:14px;color:var(--gray-500);line-height:1.6;flex:1;margin-bottom:16px;">Plan all your follow-up calls for the week. Check them off as you complete them. Data saves automatically.</p>
+        <a href="tools/followup-planner.html" class="tool-link">Open Planner →</a>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;">
+        <div class="tool-badge">Free</div><h4 style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:8px;">🎯 Lead Qualification Checklist</h4>
+        <p style="font-size:14px;color:var(--gray-500);line-height:1.6;flex:1;margin-bottom:16px;">Answer 10 questions and instantly know if a lead is Hot 🔥, Warm 🌤, or Cold ❄️. Stop wasting time on dead leads.</p>
+        <a href="tools/lead-qualifier.html" class="tool-link">Qualify a Lead →</a>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;">
+        <div class="tool-badge">Free</div><h4 style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:8px;">📝 Sales Pitch Script Builder</h4>
+        <p style="font-size:14px;color:var(--gray-500);line-height:1.6;flex:1;margin-bottom:16px;">Fill in 6 fields and get your complete 60-second pitch in 5 parts. Built for Real Estate, Insurance, Cars, Loans &amp; Coaching.</p>
+        <a href="tools/pitch-builder.html" class="tool-link">Build My Pitch →</a>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;">
+        <div class="tool-badge">Free</div><h4 style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:8px;">📈 Conversion Rate Calculator</h4>
+        <p style="font-size:14px;color:var(--gray-500);line-height:1.6;flex:1;margin-bottom:16px;">Enter your income target and close rate — instantly see how many leads you need per day, week, and month.</p>
+        <a href="tools/conversion-calculator.html" class="tool-link">Calculate Now →</a>
+      </div>
+    </div>
+    <div class="tools-cta-strip">
+      <p>Used by <strong>1,000+ agents</strong> across India every month. Want all tools inside your lead management system, with your leads attached?</p>
+      <a href="#pricing" class="btn btn-teal">See LeadPilot →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="label-pill" style="margin:0 auto 18px;display:table;">Pricing</div>
+    <h2 class="s-title" style="text-align:center;">One Price. Lifetime Access.<br>No Surprises.</h2>
+    <p class="s-sub" style="text-align:center;margin-left:auto;margin-right:auto;">
+      Other Tools charge ₹1,000–₹2,000/month — ₹12,000–₹24,000 every year, forever.<br>
+      <strong style="color:var(--teal-dark);">LeadPilot: pay once, own it forever. Save ₹9,000–₹21,000 in year one alone.</strong>
+    </p>
+
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead><tr><th></th><th>Other Tools (Zoho etc.)</th><th>LeadPilot</th></tr></thead>
+        <tbody>
+          <tr><td>Monthly cost</td><td>₹1,000–₹2,000/month</td><td>₹0/month</td></tr>
+          <tr><td>Year 1 cost</td><td>₹12,000–₹24,000</td><td>₹2,999 once</td></tr>
+          <tr><td>Year 2 cost</td><td>₹12,000–₹24,000 again</td><td>₹0</td></tr>
+          <tr><td>Data locked if you stop paying</td><td>Yes</td><td>Never — you own it</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="plan-lbl">Solo</div>
+        <div class="plan-price"><sup>₹</sup>2,999</div>
+        <div class="plan-once">One-time · Lifetime access · No renewals</div>
+        <div class="plan-tagline">For solo agents who want to stop losing leads and start closing consistently.</div>
+        <ul class="plan-feats">
+          <li>Unlimited leads</li>
+          <li>Lead pipeline &amp; status tracking</li>
+          <li>WhatsApp one-tap follow-up</li>
+          <li>Follow-up reminders</li>
+          <li>Call log &amp; notes</li>
+          <li>Mobile app access</li>
+          <li>Lead source tracking</li>
+          <li>Free tools library</li>
+          <li>Email support</li>
+        </ul>
+        <a href="https://wa.me/917736037807?text=Hi%2C+I+want+to+try+LeadPilot+Solo+plan" class="btn btn-outline" style="width:100%;justify-content:center;" target="_blank">Start Free Trial →</a>
+        <p class="plan-cta-sub">Try free first. Pay only when you're sure.</p>
+      </div>
+      <div class="price-card featured">
+        <div class="popular-tag">Most Popular</div>
+        <div class="plan-lbl">Team</div>
+        <div class="plan-price"><sup>₹</sup>4,999</div>
+        <div class="plan-once">One-time · Lifetime access · No renewals</div>
+        <div class="plan-tagline">For growing teams who want full pipeline visibility and never drop a lead.</div>
+        <ul class="plan-feats">
+          <li>Everything in Solo</li>
+          <li>Team collaboration (up to 5 members)</li>
+          <li>Lead assignment &amp; ownership</li>
+          <li>Advanced sales dashboard</li>
+          <li>Facebook Lead Ads integration</li>
+          <li>WhatsApp broadcast reminders</li>
+          <li>Industry-specific custom fields</li>
+          <li>Priority support</li>
+          <li>Free 1-on-1 onboarding call (30 min)</li>
+        </ul>
+        <a href="https://wa.me/917736037807?text=Hi%2C+I+want+to+try+LeadPilot+Team+plan" class="btn btn-teal" style="width:100%;justify-content:center;" target="_blank">Start Free Trial →</a>
+        <p class="plan-cta-sub">Includes a personal onboarding call. We set it up with you.</p>
+      </div>
+    </div>
+
+    <div class="price-trust">
+      <span>Free trial — no credit card</span>
+      <span>One-time payment</span>
+      <span>Lifetime access</span>
+      <span>Data is always yours</span>
+    </div>
+
+    <div class="urgency-seats">
+      🔥 Founding member pricing — first 50 customers only. Price increases with V2 launch. &nbsp;<strong>43 spots remaining.</strong>
+    </div>
+
+    <div class="roi-box">
+      <h3>Still thinking about ₹2,999?</h3>
+      <p>Close just <strong>1 extra deal per year</strong> because of better follow-up — LeadPilot pays for itself many times over:</p>
+      <div class="roi-grid">
+        <div class="roi-item"><div class="roi-type">Real estate commission</div><div class="roi-val">₹15,000–₹50,000</div></div>
+        <div class="roi-item"><div class="roi-type">Insurance commission</div><div class="roi-val">₹3,000–₹15,000</div></div>
+        <div class="roi-item"><div class="roi-type">Car sale commission</div><div class="roi-val">₹5,000–₹20,000</div></div>
+        <div class="roi-item"><div class="roi-type">Loan disbursement fee</div><div class="roi-val">₹5,000–₹25,000</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section section-bg" id="how">
+  <div class="container">
+    <div class="label-pill">How it works</div>
+    <h2 class="s-title">Up and Running in 5 Minutes.<br>Closing Deals in Week One.</h2>
+    <p class="s-sub">No training. No complicated setup. Just add your leads and start closing.</p>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h4>Start your free trial</h4><p>No credit card. No commitment. Sign up, choose your industry, pipeline ready instantly.</p></div>
+      <div class="step"><div class="step-num">2</div><h4>Add your leads</h4><p>Import from Excel, paste from WhatsApp, or enter manually. Done in minutes.</p></div>
+      <div class="step"><div class="step-num">3</div><h4>Set follow-up reminders</h4><p>For every lead, set when to follow up. LeadPilot notifies you at exactly the right time.</p></div>
+      <div class="step"><div class="step-num">4</div><h4>Log every conversation</h4><p>Add a note in 10 seconds after every call. Always know what was said last time.</p></div>
+      <div class="step"><div class="step-num">5</div><h4>Close more deals 🎉</h4><p>Move leads through your pipeline. Consistent follow-up is all it takes.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+  <div class="container">
+    <div class="label-pill">Testimonials</div>
+    <h2 class="s-title">Agents Love LeadPilot</h2>
+    <p class="s-sub">Real results from real professionals across India.</p>
+    <div class="testi-grid">
+      <div class="testi-card"><div class="stars">★★★★★</div><blockquote>"I was managing 60 leads on WhatsApp and losing track of everyone. LeadPilot changed everything. I closed 4 properties in my first month."</blockquote><div class="testi-author"><div class="testi-av" style="background:var(--teal);">RV</div><div><div class="testi-name">Rajesh Verma</div><div class="testi-role">Real Estate Agent, Mumbai</div></div></div></div>
+      <div class="testi-card"><div class="stars">★★★★★</div><blockquote>"The renewal reminders alone are worth it. I recovered 11 lapsed policies last quarter just from the follow-up alerts. My manager was shocked."</blockquote><div class="testi-author"><div class="testi-av" style="background:#8b5cf6;">NK</div><div><div class="testi-name">Neha Kulkarni</div><div class="testi-role">Insurance Advisor, Pune</div></div></div></div>
+      <div class="testi-card"><div class="stars">★★★★★</div><blockquote>"Every car inquiry used to die after 2 days. Now I follow up automatically and customers are surprised by the service. Sales up 30% this quarter."</blockquote><div class="testi-author"><div class="testi-av" style="background:#f59e0b;">AP</div><div><div class="testi-name">Arvind Patel</div><div class="testi-role">Car Dealer, Ahmedabad</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section-bg" id="faq">
+  <div class="container">
+    <div class="label-pill" style="margin:0 auto 18px;display:table;">FAQ</div>
+    <h2 class="s-title" style="text-align:center;">Questions? Answered.</h2>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is there really no monthly fee — ever? <span class="faq-icon">+</span></button><div class="faq-a">Yes. LeadPilot is a one-time payment — ₹2,999 for Solo or ₹4,999 for Team. Pay once and use it for life. No renewal notices. No surprise charges. No subscription that cancels when you forget to pay.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How is this different from Zoho or other tools? <span class="faq-icon">+</span></button><div class="faq-a">Zoho and most tools charge ₹1,000–₹5,000/month — ₹12,000–₹60,000/year, every year. LeadPilot is built for Indian agents — WhatsApp-first, mobile-first, follow-up-first — at a one-time price. You pay once, you own it.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What does the free trial include? <span class="faq-icon">+</span></button><div class="faq-a">Full access to all features. No credit card required. Add real leads, set real follow-ups, see the real product. If it doesn't work for you, you pay nothing. If it does — pay once, yours forever.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Does it work on mobile? <span class="faq-icon">+</span></button><div class="faq-a">Yes — it's built mobile-first. Add leads from the field, log calls on the go, check your pipeline from anywhere. No laptop needed, ever.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How does WhatsApp integration work? <span class="faq-icon">+</span></button><div class="faq-a">Every lead has a one-tap WhatsApp button. Tap it and it opens the conversation directly. Log notes after the chat, set the next follow-up reminder, and your entire WhatsApp history is attached to the lead — not buried in chats.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can my team use it together? <span class="faq-icon">+</span></button><div class="faq-a">Yes — the Team plan (₹4,999 one-time) includes up to 5 team members, lead assignment, and team performance tracking. One payment covers your whole team, forever.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I use it for multiple industries? <span class="faq-icon">+</span></button><div class="faq-a">Yes. During onboarding, choose your primary industry and the fields match your business. If you work across multiple segments (e.g. real estate + loans), use custom fields to manage both.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What if I need help setting up? <span class="faq-icon">+</span></button><div class="faq-a">Team plan users get a free 30-minute onboarding call — we set it up with you personally. Solo plan users get email support and a video tutorial library. Most people are running in under 20 minutes.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="final-wrap">
+  <div class="final-inner">
+    <h2>₹2,999 Once.<br><em>Leads Organised Forever.</em></h2>
+    <p>Every day without a system is another day of lost follow-ups, missed deals, and money left on the table. LeadPilot takes 5 minutes to set up and pays for itself with one deal you would have otherwise let go cold.</p>
+    <div class="final-ctas">
+      <a href="https://wa.me/917736037807?text=Hi%2C+I+want+to+try+LeadPilot+free" class="btn btn-teal" target="_blank">Start Free Trial — No Card Needed →</a>
+      <a href="https://wa.me/917736037807?text=Hi%2C+I+have+a+question+about+LeadPilot" class="btn btn-wa" target="_blank">💬 Chat on WhatsApp</a>
+    </div>
+    <div class="final-trust">
+      <span>Free trial</span>
+      <span>One-time payment</span>
+      <span>Lifetime access</span>
+      <span>Mobile-first</span>
+      <span>Built for India</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><img src="Logo.png" alt="LeadPilot" /><span>LeadPilot</span></div>
+        <p>The lead management system for service businesses that run on WhatsApp, calls, and follow-ups. Pay once. Use forever.</p>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="https://wa.me/917736037807?text=Hi%2C+I+want+to+try+LeadPilot+free" target="_blank">Free Trial</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Industries</h5>
+        <ul>
+          <li><a href="real-estate.html">Real Estate</a></li>
+          <li><a href="insurance.html">Insurance</a></li>
+          <li><a href="cars.html">Car Dealers</a></li>
+          <li><a href="loans.html">Loan Agents</a></li>
+          <li><a href="coaches.html">Coaches</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Support</h5>
+        <ul>
+          <li><a href="#">Help Centre</a></li>
+          <li><a href="https://wa.me/917736037807" target="_blank">WhatsApp Support</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Use</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 LeadPilot. All rights reserved. &nbsp;•&nbsp; <a href="blog.html">Blog</a></span>
+      <span>Made with ❤️ for Indian salespeople</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = answer.classList.contains('open');
+    document.querySelectorAll('.faq-a.open').forEach(el => el.classList.remove('open'));
+    document.querySelectorAll('.faq-q.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) { answer.classList.add('open'); btn.classList.add('open'); }
+  }
+</script>
+
+  <script>
+  document.querySelectorAll('a[href*="wa.me"]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      fbq('track', 'Lead');
+    });
+  });
+  </script>
+
+</body>
+</html>

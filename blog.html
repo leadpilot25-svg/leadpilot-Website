@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LeadPilot Blog — Close More Sales with Smart Follow-Up Strategies</title>
+  <meta name="description" content="Actionable follow-up guides, sales templates, scripts, and qualification checklists specifically written for real estate agents, insurance advisors, and loan agents in India." />
+  <meta name="keywords" content="real estate sales strategy, insurance renewal script, sales follow-up rule, lead qualification, Indian agents blog" />
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://leadpilot-in.netlify.app/blog.html" />
+  <meta property="og:title" content="LeadPilot Blog — Close More Sales with Smart Follow-Up Strategies" />
+  <meta property="og:description" content="Actionable follow-up guides, sales templates, scripts, and checklists for Indian sales professionals." />
+  <meta property="og:image" content="https://leadpilot-in.netlify.app/Logo.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="LeadPilot Blog — Close More Sales with Smart Follow-Up Strategies" />
+  <meta property="twitter:description" content="Actionable follow-up guides, sales templates, scripts, and checklists for Indian sales professionals." />
+  <meta property="twitter:image" content="https://leadpilot-in.netlify.app/Logo.png" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://leadpilot-in.netlify.app/blog.html" />
+
+  <!-- JSON-LD Blog Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "LeadPilot Sales Blog",
+    "description": "Guides, scripts, checklists, and templates to help Indian agents, advisors, and dealers master sales follow-ups and close more leads.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "LeadPilot",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://leadpilot-in.netlify.app/Logo.png"
+      }
+    }
+  }
+  </script>
+
+  <link rel="icon" href="Logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:         #0a0f1e;
+      --navy-2:       #111d35;
+      --navy-3:       #1a2d4f;
+      --teal:         #00c49a;
+      --teal-dark:    #00a882;
+      --teal-light:   #e6faf6;
+      --teal-mid:     #b3f0e4;
+      --white:        #ffffff;
+      --gray-50:      #f8f9fc;
+      --gray-100:     #f1f4f9;
+      --gray-200:     #e4e9f2;
+      --gray-300:     #cdd5e0;
+      --gray-500:     #7a8599;
+      --gray-700:     #3d4a5c;
+      --gray-900:     #1a2234;
+      --border:       #e4e9f2;
+      --border-dark:  #cdd5e0;
+      --shadow-sm:    0 1px 3px rgba(10,15,30,.06), 0 1px 2px rgba(10,15,30,.04);
+      --shadow-md:    0 4px 16px rgba(10,15,30,.08), 0 2px 6px rgba(10,15,30,.05);
+      --shadow-lg:    0 16px 40px rgba(10,15,30,.1), 0 4px 12px rgba(10,15,30,.06);
+      --radius:       16px;
+      --radius-sm:    10px;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      background: var(--white);
+      color: var(--gray-900);
+      line-height: 1.6;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+    }
+    .nav-inner {
+      max-width: 1120px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; height: 66px; gap: 32px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 34px; border-radius: 8px; }
+    .nav-logo span { font-size: 17px; font-weight: 800; color: var(--navy); }
+    .nav-links { display: flex; gap: 26px; list-style: none; margin-left: auto; }
+    .nav-links a { color: var(--gray-500); text-decoration: none; font-size: 14px; font-weight: 600; transition: color .2s; }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-ctas { display: flex; gap: 10px; }
+    .nav-ctas .btn { padding: 9px 20px; font-size: 13px; }
+    @media(max-width:768px){ .nav-links { display:none; } }
+
+    /* ── HERO ── */
+    .blog-hero {
+      background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%);
+      padding: 64px 0 40px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .label-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--teal-light); border: 1px solid var(--teal-mid);
+      color: var(--teal-dark); font-size: 12px; font-weight: 700;
+      padding: 5px 14px; border-radius: 99px;
+      text-transform: uppercase; letter-spacing: .08em;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800; color: var(--navy);
+      margin-bottom: 12px; letter-spacing: -0.02em;
+    }
+    .hero-sub {
+      font-size: 17px; color: var(--gray-500);
+      max-width: 620px; margin: 0 auto;
+    }
+
+    /* ── BLOG GRID ── */
+    .blog-section { padding: 60px 0 96px; }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+    }
+    .blog-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: transform .2s, border-color .2s, box-shadow .2s;
+    }
+    .blog-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--teal-mid);
+      box-shadow: var(--shadow-md);
+    }
+    .blog-meta-bar {
+      padding: 24px 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .blog-category {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--teal-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: var(--teal-light);
+      padding: 4px 10px;
+      border-radius: 99px;
+    }
+    .blog-read-time {
+      font-size: 12px;
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+    .blog-content {
+      padding: 16px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .blog-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+    .blog-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .blog-title a:hover {
+      color: var(--teal-dark);
+    }
+    .blog-excerpt {
+      font-size: 14px;
+      color: var(--gray-500);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+    
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 11px 22px; border-radius: var(--radius-sm);
+      font-size: 14px; font-weight: 700;
+      text-decoration: none; cursor: pointer; border: none;
+      transition: all .2s; white-space: nowrap;
+      font-family: inherit;
+    }
+    .btn-teal {
+      background: var(--teal); color: var(--white);
+      box-shadow: 0 4px 12px rgba(0,196,154,.25);
+    }
+    .btn-teal:hover { background: var(--teal-dark); }
+    .btn-outline {
+      background: transparent; border: 1.5px solid var(--border-dark);
+      color: var(--gray-700);
+    }
+    .btn-outline:hover { border-color: var(--teal); color: var(--teal-dark); background: var(--teal-light); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--gray-50); border-top: 1px solid var(--border); padding: 56px 24px 28px; }
+    .footer-inner { max-width: 1120px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: 2fr repeat(3,1fr); gap: 48px; margin-bottom: 40px; }
+    @media(max-width:768px){ .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; } }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .footer-logo img { height: 30px; border-radius: 6px; }
+    .footer-logo span { font-size: 17px; font-weight: 800; color: var(--navy); }
+    .footer-brand p { font-size: 14px; color: var(--gray-500); line-height: 1.7; max-width: 240px; }
+    footer h5 { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--gray-500); margin-bottom: 14px; }
+    footer ul { list-style: none; }
+    footer ul li { margin-bottom: 9px; }
+    footer ul a { color: var(--gray-700); text-decoration: none; font-size: 14px; transition: color .2s; }
+    footer ul a:hover { color: var(--teal-dark); }
+    .footer-bottom {
+      border-top: 1px solid var(--border); padding-top: 22px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 10px; font-size: 13px; color: var(--gray-500);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="Logo.png" alt="LeadPilot" />
+      <span>LeadPilot</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#features">Features</a></li>
+      <li><a href="/#tools">Free Tools</a></li>
+      <li><a href="/blog.html" style="color: var(--teal-dark);">Blog</a></li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/#how">How It Works</a></li>
+      <li><a href="/#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-ctas">
+      <a href="/#pricing" class="btn btn-outline" style="padding: 9px 20px; font-size: 13px;">View Plans</a>
+      <a href="https://wa.me/917736037807?text=Hi%2C+I+want+to+try+LeadPilot+free" class="btn btn-teal" target="_blank" style="padding: 9px 20px; font-size: 13px;">Start Free Trial →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="blog-hero">
+  <div class="container">
+    <div class="label-pill">Sales Resources</div>
+    <h1>Mastering Follow-Ups</h1>
+    <p class="hero-sub">The official LeadPilot blog. Expert checklists, WhatsApp script guides, and conversion blueprints specifically created for Indian sales professionals.</p>
+  </div>
+</div>
+
+<!-- BLOG GRID -->
+<section class="blog-section">
+  <div class="container">
+    <div class="blog-grid">
+    
+      <!-- Card 1 -->
+      <div class="blog-card">
+        <div class="blog-meta-bar">
+          <span class="blog-category">Real Estate</span>
+          <span class="blog-read-time">5 min read</span>
+        </div>
+        <div class="blog-content">
+          <h3 class="blog-title"><a href="/blog/why-leads-go-cold.html">Why 40% of Real Estate Leads Go Cold (and How to Fix It)</a></h3>
+          <p class="blog-excerpt">Real estate inquiries are expensive. Understand the main bottlenecks causing your property leads to leak, and set up a systematic 5-minute follow-up system.</p>
+          <a href="/blog/why-leads-go-cold.html" class="btn btn-outline" style="width: 100%;">Read Article →</a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="blog-card">
+        <div class="blog-meta-bar">
+          <span class="blog-category">Insurance</span>
+          <span class="blog-read-time">6 min read</span>
+        </div>
+        <div class="blog-content">
+          <h3 class="blog-title"><a href="/blog/recover-lapsed-policies.html">How to Recover Lapsed Insurance Policies: Script Guide</a></h3>
+          <p class="blog-excerpt">Renewals are an insurance advisor's bread and butter. Discover 4 high-converting WhatsApp message scripts to reconnect with lapsed policyholders.</p>
+          <a href="/blog/recover-lapsed-policies.html" class="btn btn-outline" style="width: 100%;">Read Article →</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="blog-card">
+        <div class="blog-meta-bar">
+          <span class="blog-category">Sales Cadence</span>
+          <span class="blog-read-time">4 min read</span>
+        </div>
+        <div class="blog-content">
+          <h3 class="blog-title"><a href="/blog/72-hour-followup-rule.html">The 72-Hour Follow-Up Rule: The Sales Sweet Spot</a></h3>
+          <p class="blog-excerpt">Learn the behavioral science of why lead response decay happens, and why focusing your energy on the first 72 hours yields a 3x higher conversion rate.</p>
+          <a href="/blog/72-hour-followup-rule.html" class="btn btn-outline" style="width: 100%;">Read Article →</a>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="blog-card">
+        <div class="blog-meta-bar">
+          <span class="blog-category">WhatsApp</span>
+          <span class="blog-read-time">7 min read</span>
+        </div>
+        <div class="blog-content">
+          <h3 class="blog-title"><a href="/blog/whatsapp-sales-strategy.html">The Non-Spammy WhatsApp Sales Strategy for Agents</a></h3>
+          <p class="blog-excerpt">Stop blasting massive broadcast lists. Build deep client relationships and drive conversions on WhatsApp using helpful value updates and statuses.</p>
+          <a href="/blog/whatsapp-sales-strategy.html" class="btn btn-outline" style="width: 100%;">Read Article →</a>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="blog-card">
+        <div class="blog-meta-bar">
+          <span class="blog-category">Lead Qualification</span>
+          <span class="blog-read-time">5 min read</span>
+        </div>
+        <div class="blog-content">
+          <h3 class="blog-title"><a href="/blog/lead-qualification-checklist.html">The 10-Point Lead Qualification Checklist Blueprint</a></h3>
+          <p class="blog-excerpt">Stop wasting valuable hours on window shoppers. Qualify prospects based on budget, timeline, authority, and engagement metrics in under 3 minutes.</p>
+          <a href="/blog/lead-qualification-checklist.html" class="btn btn-outline" style="width: 100%;">Read Article →</a>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="blog-card">
+        <div class="blog-meta-bar">
+          <span class="blog-category">CRM Tips</span>
+          <span class="blog-read-time">5 min read</span>
+        </div>
+        <div class="blog-content">
+          <h3 class="blog-title"><a href="/blog/crm-mistake.html">The #1 CRM Mistake Indian Sales Agencies Make</a></h3>
+          <p class="blog-excerpt">Bloated systems, complex custom dashboards, and heavy monthly bills cause 80% of small business CRM rollouts to fail. Keep it humble, simple, and pay-once.</p>
+          <a href="/blog/crm-mistake.html" class="btn btn-outline" style="width: 100%;">Read Article →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><img src="Logo.png" alt="LeadPilot" /><span>LeadPilot</span></div>
+        <p>The lead management system for service businesses that run on WhatsApp, calls, and follow-ups. Pay once. Use forever.</p>
+      </div>
+      <div>
+       <h5>Product</h5>
+<ul>
+  <li><a href="index.html#features">Features</a></li>
+  <li><a href="index.html#pricing">Pricing</a></li>
+  <li><a href="index.html#how">How It Works</a></li>
+  <li><a href="blog.html">Blog</a></li>
+  <li><a href="https://wa.me/917736037807?text=Hi%2C+I+want+to+try+LeadPilot+free" target="_blank">Free Trial</a></li>
+</ul>
+</div>
+
+<div>
+<h5>Industries</h5>
+<ul>
+  <li><a href="real-estate.html">Real Estate</a></li>
+  <li><a href="insurance.html">Insurance</a></li>
+  <li><a href="cars.html">Car Dealers</a></li>
+  <li><a href="loans.html">Loan Agents</a></li>
+  <li><a href="coaches.html">Coaches</a></li>
+</ul>
+</div>
+
+<div>
+<h5>Support</h5>
+<ul>
+  <li><a href="privacy-policy.html">Privacy Policy</a></li>
+  <li><a href="terms.html">Terms & Conditions</a></li>
+  <li><a href="blog.html">Blog</a></li>
+  <li><a href="https://wa.me/917736037807" target="_blank">WhatsApp Support</a></li>
+</ul>
+</div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 LeadPilot. All rights reserved. &nbsp;•&nbsp; <a href="/blog.html">Blog</a></span>
+      <span>Made with ❤️ for Indian salespeople</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

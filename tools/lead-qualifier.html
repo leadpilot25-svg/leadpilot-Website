@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Qualification Checklist — LeadPilot Free Tool</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0f1e2e;--mint:#3ecf8e;--mint-light:#d6f5e8;--gray-100:#f0f4f2;--gray-200:#e2e9e5;--gray-400:#9aada4;--gray-600:#4d6259;--white:#fff;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--gray-100);color:var(--navy);padding-bottom:50px;}
+  header{background:var(--navy);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-family:'Sora',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;}
+  .logo span{color:var(--mint);}
+  .nav-back{color:#fff;text-decoration:none;font-size:0.85rem;font-weight:600;}
+  .nav-back:hover{color:var(--mint);}
+  .main{max-width:680px;margin:0 auto;padding:28px 20px;}
+  h2{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:800;margin-bottom:6px;}
+  .sub{font-size:0.88rem;color:var(--gray-600);margin-bottom:22px;}
+  .lead-name-row{display:flex;gap:10px;margin-bottom:22px;align-items:center;}
+  .lead-name-row input{font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:10px 14px;border:1.5px solid var(--gray-200);border-radius:8px;outline:none;flex:1;}
+  .lead-name-row input:focus{border-color:var(--mint);}
+  .btn{font-family:'Sora',sans-serif;font-weight:700;font-size:0.85rem;padding:11px 22px;border-radius:999px;border:none;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px;}
+  .btn-navy{background:var(--navy);color:#fff;}
+  .btn-mint{background:var(--mint);color:var(--navy);box-shadow:0 4px 10px rgba(62, 207, 142, 0.2);}
+  .btn-mint:hover{background:#31b87c;transform:translateY(-1px);}
+  .question-card{background:#fff;border:1.5px solid var(--gray-200);border-radius:12px;padding:18px 20px;margin-bottom:12px;transition:border-color .2s;box-shadow:0 2px 6px rgba(15,30,46,0.02);}
+  .question-card.answered{border-color:var(--mint);}
+  .q-row{display:flex;align-items:flex-start;gap:14px;}
+  .q-num{font-family:'Sora',sans-serif;font-weight:800;font-size:0.8rem;color:var(--mint);background:var(--mint-light);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+  .q-text{font-size:0.92rem;font-weight:500;flex:1;line-height:1.5;}
+  .q-category{font-size:0.68rem;color:var(--gray-400);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;}
+  .answer-row{display:flex;gap:8px;margin-top:12px;margin-left:42px;flex-wrap:wrap;}
+  .ans-btn{font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;padding:8px 18px;border-radius:999px;border:1.5px solid var(--gray-200);background:#fff;cursor:pointer;transition:all .2s;}
+  .ans-btn:hover{border-color:var(--mint);}
+  .ans-btn.selected-yes{background:var(--mint);border-color:var(--mint);color:var(--navy);}
+  .ans-btn.selected-no{background:#fff0f0;border-color:#e04b4b;color:#e04b4b;}
+  .ans-btn.selected-maybe{background:#fffde7;border-color:#c9a000;color:#7a6000;}
+  .result-box{background:#fff;border-radius:16px;padding:28px;text-align:center;margin-top:24px;display:none;border:2px solid var(--gray-200);box-shadow:0 6px 20px rgba(15,30,46,0.08);}
+  .result-box.show{display:block;}
+  .score-circle{width:110px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:800;font-size:2rem;margin:0 auto 16px;box-shadow:0 4px 10px rgba(0,0,0,0.05);}
+  .score-hot{background:var(--mint-light);color:#1a8a55;border:3px solid var(--mint);}
+  .score-warm{background:#fffde7;color:#7a6000;border:3px solid #f0c000;}
+  .score-cold{background:#f5f5f5;color:#999;border:3px solid #ddd;}
+  .result-label{font-family:'Sora',sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:8px;}
+  .result-desc{font-size:0.9rem;color:var(--gray-600);line-height:1.65;max-width:440px;margin:0 auto 20px;}
+  .action-list{text-align:left;background:var(--gray-100);border-radius:10px;padding:16px 20px;margin-bottom:16px;}
+  .action-list li{font-size:0.88rem;color:var(--gray-600);margin-bottom:8px;line-height:1.5;}
+  .reset-btn{background:none;border:1.5px solid var(--gray-200);border-radius:999px;padding:10px 20px;font-family:'Sora',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all .2s;margin-top:8px;}
+  .reset-btn:hover{border-color:var(--mint);color:var(--mint);}
+  .progress-bar-wrap{background:var(--gray-200);border-radius:999px;height:6px;margin-bottom:24px;}
+  .progress-bar{background:var(--mint);height:6px;border-radius:999px;transition:width .3s;}
+  
+  .history-section{margin-top:35px;background:#fff;border-radius:16px;padding:24px;border:1px solid var(--gray-200);box-shadow:0 4px 12px rgba(15,30,46,0.03);}
+  .history-title{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:800;margin-bottom:16px;color:var(--navy);display:flex;justify-content:space-between;align-items:center;}
+  .history-list{display:flex;flex-direction:column;gap:10px;}
+  .history-item{display:flex;justify-content:space-between;align-items:center;padding:12px;border-radius:8px;background:var(--gray-100);font-size:0.85rem;}
+  .history-name{font-weight:700;}
+  .history-meta{color:var(--gray-600);font-size:0.75rem;}
+  .badge{padding:3px 10px;border-radius:999px;font-size:0.72rem;font-weight:700;}
+  .badge-hot{background:var(--mint-light);color:#1a8a55;}
+  .badge-warm{background:#fffde7;color:#7a6000;}
+  .badge-cold{background:#f5f5f5;color:#666;}
+  .clear-history{font-size:0.75rem;color:#e04b4b;cursor:pointer;background:none;border:none;font-weight:600;}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Lead<span>Pilot</span> <span style="opacity:.5;font-weight:400;font-size:0.85rem;">— Lead Qualifier</span></div>
+  <a href="/" class="nav-back">← Back to Home</a>
+</header>
+
+<div class="main">
+  <h2>🎯 Lead Qualification Checklist</h2>
+  <p class="sub">Answer 10 questions about your lead and instantly know if they're Hot 🔥, Warm 🌤, or Cold ❄️ — so you prioritise your time right.</p>
+
+  <div class="lead-name-row">
+    <input id="leadName" placeholder="Enter lead name (optional, e.g., Rajesh Sharma)">
+  </div>
+
+  <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
+
+  <div id="questionsContainer"></div>
+
+  <div style="text-align:center;margin-top:20px;">
+    <button class="btn btn-mint" onclick="calculateScore()" id="calcBtn" style="display:none">Calculate Score →</button>
+  </div>
+
+  <div class="result-box" id="resultBox">
+    <div class="score-circle" id="scoreCircle"></div>
+    <div class="result-label" id="resultLabel"></div>
+    <div class="result-desc" id="resultDesc"></div>
+    <div class="action-list" id="actionList"></div>
+    <button class="btn btn-mint" onclick="saveResult()">💾 Save Result to History</button>
+    <button class="reset-btn" onclick="resetAll()">← Qualify Another Lead</button>
+  </div>
+
+  <div class="history-section" id="historySection">
+    <div class="history-title">
+      <span>📜 Qualification History</span>
+      <button class="clear-history" onclick="clearHistory()">Clear History</button>
+    </div>
+    <div class="history-list" id="historyList"></div>
+  </div>
+</div>
+
+<script>
+const questions = [
+  {cat:'Budget', text:'Has the lead clearly mentioned their budget or price range?', yes:2, no:0, maybe:1},
+  {cat:'Budget', text:'Is their budget realistic for what they want?', yes:2, no:0, maybe:1},
+  {cat:'Timeline', text:'Do they have a clear timeline to buy/close? (within 1–3 months)', yes:2, no:0, maybe:1},
+  {cat:'Decision', text:'Is this person the final decision-maker? (not waiting for spouse/family)', yes:2, no:-1, maybe:0},
+  {cat:'Need', text:'Do they have a genuine, specific need? (not just browsing)', yes:2, no:0, maybe:1},
+  {cat:'Engagement', text:'Did they respond quickly and positively to your first contact?', yes:2, no:-1, maybe:0},
+  {cat:'Engagement', text:'Have they asked specific questions about the product/property/policy?', yes:2, no:0, maybe:1},
+  {cat:'Trust', text:'Did they share personal details willingly? (name, budget, preference)', yes:1, no:0, maybe:0},
+  {cat:'Competition', text:'Are they speaking only with you? (not comparing with 5 others)', yes:2, no:0, maybe:1},
+  {cat:'Urgency', text:'Is there any urgency in their requirement? (moving city, expiring policy, etc.)', yes:2, no:0, maybe:1},
+];
+
+let answers = new Array(10).fill(null);
+let finalScorePct = 0;
+let finalCategory = '';
+
+function renderQuestions(){
+  const container = document.getElementById('questionsContainer');
+  container.innerHTML = questions.map((q,i)=>`
+    <div class="question-card" id="qc-${i}">
+      <div class="q-row">
+        <div class="q-num">${i+1}</div>
+        <div style="flex:1;">
+          <div class="q-category">${q.cat}</div>
+          <div class="q-text">${q.text}</div>
+        </div>
+      </div>
+      <div class="answer-row">
+        <button class="ans-btn" id="q${i}-yes" onclick="answer(${i},'yes')">✅ Yes</button>
+        <button class="ans-btn" id="q${i}-maybe" onclick="answer(${i},'maybe')">🤔 Not Sure</button>
+        <button class="ans-btn" id="q${i}-no" onclick="answer(${i},'no')">❌ No</button>
+      </div>
+    </div>`).join('');
+}
+
+function answer(qi, val){
+  answers[qi] = val;
+  ['yes','maybe','no'].forEach(v => {
+    const btn = document.getElementById(`q${qi}-${v}`);
+    btn.className = 'ans-btn' + (v===val ? ` selected-${v}` : '');
+  });
+  document.getElementById(`qc-${qi}`).classList.add('answered');
+  const answered = answers.filter(a=>a!==null).length;
+  document.getElementById('progressBar').style.width = (answered/10*100)+'%';
+  document.getElementById('calcBtn').style.display = answered >= 7 ? 'inline-block' : 'none';
+}
+
+function calculateScore(){
+  let score = 0;
+  answers.forEach((a,i)=>{
+    if(a===null) return;
+    const q = questions[i];
+    if(a==='yes') score += q.yes;
+    else if(a==='no') score += q.no;
+    else score += q.maybe;
+  });
+  const max = 19;
+  const pct = Math.round(score/max*100);
+  finalScorePct = pct;
+  const circle = document.getElementById('scoreCircle');
+  const label = document.getElementById('resultLabel');
+  const desc = document.getElementById('resultDesc');
+  const actions = document.getElementById('actionList');
+  const box = document.getElementById('resultBox');
+
+  let tag, cls, descText, actionItems;
+  const name = document.getElementById('leadName').value.trim() || 'This lead';
+
+  if(pct >= 70){
+    tag='🔥 HOT LEAD'; cls='score-hot'; finalCategory = 'Hot';
+    descText = `${name} shows strong buying signals. They have budget, timeline, and genuine intent. Prioritise this lead TODAY — follow up within the hour.`;
+    actionItems = '<li>📞 Call them TODAY — hot leads go cold fast</li><li>📋 Send property/product details immediately</li><li>📅 Schedule a site visit or demo this week</li><li>💬 Keep communication personal and prompt</li>';
+  } else if(pct >= 40){
+    tag='🌤 WARM LEAD'; cls='score-warm'; finalCategory = 'Warm';
+    descText = `${name} has potential but needs more nurturing. Follow up regularly and address their hesitations.`;
+    actionItems = '<li>📆 Set a follow-up reminder for 2–3 days</li><li>💬 Send helpful content (brochure, testimonial)</li><li>❓ Ask questions to uncover their real concern</li><li>🕐 Give them time but stay top of mind</li>';
+  } else {
+    tag='❄️ COLD LEAD'; cls='score-cold'; finalCategory = 'Cold';
+    descText = `${name} does not show strong buying intent right now. Don't waste daily time on this — add to a long-term nurture list.`;
+    actionItems = '<li>📁 Move to a "Long Term" pipeline stage</li><li>📅 Set a follow-up reminder for 30–60 days</li><li>📧 Send occasional value content (not sales)</li><li>⏩ Focus your energy on hotter leads</li>';
+  }
+
+  circle.className = `score-circle ${cls}`;
+  circle.textContent = pct+'%';
+  label.textContent = tag;
+  desc.textContent = descText;
+  actions.innerHTML = `<strong style="font-family:Sora,sans-serif;font-size:0.82rem;text-transform:uppercase;letter-spacing:.05em;color:var(--gray-600)">Recommended Actions</strong><ul style="margin-top:10px;padding-left:16px;list-style:disc">${actionItems}</ul>`;
+  box.classList.add('show');
+  box.scrollIntoView({behavior:'smooth'});
+}
+
+function saveResult(){
+  const name = document.getElementById('leadName').value.trim() || 'Unnamed Lead';
+  const history = JSON.parse(localStorage.getItem('lp_qualified_leads') || '[]');
+  const entry = {
+    name,
+    score: finalScorePct,
+    category: finalCategory,
+    date: new Date().toLocaleDateString('en-IN', {day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'})
+  };
+  history.unshift(entry);
+  localStorage.setItem('lp_qualified_leads', JSON.stringify(history));
+  renderHistory();
+  alert(`Result for "${name}" has been saved to your browser history logs!`);
+}
+
+function renderHistory(){
+  const history = JSON.parse(localStorage.getItem('lp_qualified_leads') || '[]');
+  const container = document.getElementById('historyList');
+  if(!history.length){
+    container.innerHTML = `<div style="text-align:center;color:var(--gray-400);font-size:0.85rem;padding:20px;">No qualified lead records yet. Clear check above and hit Save Result.</div>`;
+    return;
+  }
+  container.innerHTML = history.map(h => {
+    let cls = 'badge-cold';
+    if(h.category === 'Hot') cls = 'badge-hot';
+    else if(h.category === 'Warm') cls = 'badge-warm';
+    return `
+      <div class="history-item">
+        <div>
+          <div class="history-name">${h.name}</div>
+          <div class="history-meta">${h.date}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span class="badge ${cls}">${h.category} (${h.score}%)</span>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function clearHistory(){
+  if(confirm("Clear qualification history logs?")){
+    localStorage.removeItem('lp_qualified_leads');
+    renderHistory();
+  }
+}
+
+function resetAll(){
+  answers = new Array(10).fill(null);
+  document.getElementById('resultBox').classList.remove('show');
+  document.getElementById('progressBar').style.width='0%';
+  document.getElementById('calcBtn').style.display='none';
+  document.getElementById('leadName').value='';
+  renderQuestions();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+renderQuestions();
+renderHistory();
+</script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conversion Rate Calculator — LeadPilot Free Tool</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0f1e2e;--mint:#3ecf8e;--mint-light:#d6f5e8;--gray-100:#f0f4f2;--gray-200:#e2e9e5;--gray-400:#9aada4;--gray-600:#4d6259;--white:#fff;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--gray-100);color:var(--navy);}
+  header{background:var(--navy);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-family:'Sora',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;}
+  .logo span{color:var(--mint);}
+  .nav-back{color:#fff;text-decoration:none;font-size:0.85rem;font-weight:600;transition:color .2s;}
+  .nav-back:hover{color:var(--mint);}
+  .main{max-width:860px;margin:0 auto;padding:28px 20px;}
+  h2{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:800;margin-bottom:6px;}
+  .sub{font-size:0.88rem;color:var(--gray-600);margin-bottom:28px;line-height:1.5;}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .card{background:#fff;border:1px solid var(--gray-200);border-radius:16px;padding:24px;box-shadow: 0 4px 12px rgba(15,30,46,0.03);}
+  .card h3{font-family:'Sora',sans-serif;font-size:1.05rem;font-weight:800;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--gray-100);}
+  .field{margin-bottom:16px;}
+  label{font-size:0.75rem;font-weight:700;color:var(--gray-600);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px;}
+  input[type=number], input[type=text], select{font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:10px 14px;border:1.5px solid var(--gray-200);border-radius:8px;outline:none;width:100%;transition:border-color .2s;background:#fff;}
+  input:focus, select:focus{border-color:var(--mint);}
+  .prefix-input{position:relative;}
+  .prefix{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:0.95rem;color:var(--gray-600);font-weight:600;}
+  .prefix-input input{padding-left:28px;}
+  .btn{font-family:'Sora',sans-serif;font-weight:700;font-size:0.9rem;padding:12px 24px;border-radius:999px;border:none;cursor:pointer;transition:all .2s;width:100%;margin-top:6px;box-shadow: 0 4px 12px rgba(62,207,142,0.2);}
+  .btn-mint{background:var(--mint);color:var(--navy);}
+  .btn-mint:hover{background:#31b87c;transform:translateY(-1px);box-shadow: 0 6px 16px rgba(62,207,142,0.3);}
+  .results{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;}
+  .res-card{background:var(--navy);border-radius:12px;padding:18px;text-align:center;box-shadow: 0 4px 12px rgba(15,30,46,0.15);}
+  .res-label{font-size:0.72rem;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+  .res-value{font-family:'Sora',sans-serif;font-weight:800;font-size:1.6rem;color:#fff;}
+  .res-value.mint{color:var(--mint);}
+  .activity-table{width:100%;border-collapse:collapse;margin-top:20px;}
+  .activity-table th{font-family:'Sora',sans-serif;font-size:0.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-400);padding:10px;text-align:left;border-bottom:1px solid var(--gray-200);}
+  .activity-table td{font-size:0.88rem;padding:11px 10px;border-bottom:1px solid var(--gray-100);}
+  .activity-table tr:last-child td{border-bottom:none;}
+  .highlight-row td{font-family:'Sora',sans-serif;font-weight:700;background:var(--mint-light);}
+  .insight-box{background:var(--mint-light);border:1px solid #a8eacc;border-radius:10px;padding:14px 18px;margin-top:16px;font-size:0.88rem;color:var(--gray-600);line-height:1.65;}
+  .insight-box strong{color:var(--navy);}
+  @media(max-width:640px){
+    .two-col{grid-template-columns:1fr;}
+    h2{font-size:1.3rem;}
+    .card{padding:18px;}
+    .results{grid-template-columns:1fr 1fr;}
+    .res-card{padding:12px 6px;}
+    .res-value{font-size:1.3rem;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Lead<span>Pilot</span> <span style="opacity:.5;font-weight:400;font-size:0.85rem;">— Conversion Calculator</span></div>
+  <a href="/" class="nav-back">← Back to Main Website</a>
+</header>
+
+<div class="main">
+  <h2>📈 Conversion Rate & Income Calculator</h2>
+  <p class="sub">Know exactly how many leads you need to hit your monthly income target. Understand your numbers and set the right daily activity goals.</p>
+
+  <div class="two-col">
+    <div class="card">
+      <h3>Your Numbers</h3>
+      <div class="field">
+        <label>Your Industry</label>
+        <select id="industry" onchange="prefillDefaults()">
+          <option value="realestate">Real Estate Agent</option>
+          <option value="insurance">Insurance Agent</option>
+          <option value="cars">Car Dealer</option>
+          <option value="loans">Loan Agent</option>
+          <option value="coaching">Coach / Trainer</option>
+          <option value="custom">Custom</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Monthly Income Target (₹)</label>
+        <div class="prefix-input"><span class="prefix">₹</span><input type="number" id="incomeTarget" value="100000" min="0" oninput="calculate()"></div>
+      </div>
+      <div class="field">
+        <label>Average Commission / Revenue per Sale (₹)</label>
+        <div class="prefix-input"><span class="prefix">₹</span><input type="number" id="revenuePerSale" value="25000" min="1" oninput="calculate()"></div>
+      </div>
+      <div class="field">
+        <label>Your Current Close Rate (%)</label>
+        <input type="number" id="closeRate" value="10" min="1" max="100" oninput="calculate()"> 
+        <small style="color:var(--gray-400);font-size:0.72rem;display:block;margin-top:3px">e.g. 10 means 1 in 10 leads converts</small>
+      </div>
+      <div class="field">
+        <label>Working Days per Month</label>
+        <input type="number" id="workDays" value="25" min="1" max="31" oninput="calculate()">
+      </div>
+      <button class="btn btn-mint" onclick="calculate()">Calculate My Goals →</button>
+    </div>
+
+    <div>
+      <div class="card" id="resultsCard" style="display:none">
+        <h3>📊 Your Results</h3>
+        <div class="results" id="resultsGrid"></div>
+        <table class="activity-table" id="activityTable"></table>
+        <div class="insight-box" id="insightBox"></div>
+      </div>
+      <div class="card" id="defaultCard">
+        <h3>💡 Why This Matters</h3>
+        <p style="font-size:0.88rem;color:var(--gray-600);line-height:1.7;margin-bottom:12px">Most agents work hard but don't know their exact numbers. Fill in your details on the left and instantly find out:</p>
+        <ul style="font-size:0.85rem;color:var(--gray-600);line-height:2;padding-left:0;list-style:none">
+          <li>✅ Exactly how many leads you need per month</li>
+          <li>✅ How many follow-ups to do per day</li>
+          <li>✅ What closing rate you need to grow</li>
+          <li>✅ How to set your weekly activity targets</li>
+        </ul>
+        <div style="margin-top:16px;padding:14px;background:var(--mint-light);border-radius:10px;font-size:0.82rem;color:var(--gray-600)">
+          <strong style="font-family:Sora,sans-serif;color:var(--navy)">Industry Averages (India):</strong><br>
+          Real Estate: 5–15% close rate<br>
+          Insurance: 10–20% close rate<br>
+          Car Dealers: 15–25% close rate
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const defaults = {
+  realestate: {revenue: 25000, close: 8},
+  insurance:  {revenue: 8000,  close: 15},
+  cars:       {revenue: 15000, close: 18},
+  loans:      {revenue: 6000,  close: 12},
+  coaching:   {revenue: 12000, close: 20},
+  custom:     {revenue: 10000, close: 10},
+};
+
+// Retrieve values from localStorage if available
+window.onload = function() {
+  const savedIndustry = localStorage.getItem('calc_industry');
+  const savedTarget = localStorage.getItem('calc_target');
+  const savedRevenue = localStorage.getItem('calc_revenue');
+  const savedClose = localStorage.getItem('calc_close');
+  const savedDays = localStorage.getItem('calc_days');
+
+  if(savedIndustry) document.getElementById('industry').value = savedIndustry;
+  if(savedTarget) document.getElementById('incomeTarget').value = savedTarget;
+  if(savedRevenue) document.getElementById('revenuePerSale').value = savedRevenue;
+  if(savedClose) document.getElementById('closeRate').value = savedClose;
+  if(savedDays) document.getElementById('workDays').value = savedDays;
+
+  calculate();
+};
+
+function prefillDefaults(){
+  const ind = document.getElementById('industry').value;
+  const d = defaults[ind];
+  document.getElementById('revenuePerSale').value = d.revenue;
+  document.getElementById('closeRate').value = d.close;
+  calculate();
+}
+
+function calculate(){
+  const industry = document.getElementById('industry').value;
+  const target = parseFloat(document.getElementById('incomeTarget').value) || 0;
+  const revenue = parseFloat(document.getElementById('revenuePerSale').value) || 1;
+  const closeRate = parseFloat(document.getElementById('closeRate').value) || 1;
+  const workDays = parseFloat(document.getElementById('workDays').value) || 25;
+
+  // Save to localStorage
+  localStorage.setItem('calc_industry', industry);
+  localStorage.setItem('calc_target', target);
+  localStorage.setItem('calc_revenue', revenue);
+  localStorage.setItem('calc_close', closeRate);
+  localStorage.setItem('calc_days', workDays);
+
+  const salesNeeded = Math.ceil(target / revenue);
+  const leadsNeeded = Math.ceil(salesNeeded / (closeRate / 100));
+  const leadsPerDay = Math.ceil(leadsNeeded / workDays);
+  const followupsPerDay = Math.ceil(leadsPerDay * 2.5);
+  const improvedClose = closeRate * 1.5;
+  const leadsIfImproved = Math.ceil(salesNeeded / (improvedClose / 100));
+
+  document.getElementById('resultsGrid').innerHTML = `
+    <div class="res-card"><div class="res-label">Sales Needed/Month</div><div class="res-value mint">${salesNeeded}</div></div>
+    <div class="res-card"><div class="res-label">Leads Needed/Month</div><div class="res-value mint">${leadsNeeded}</div></div>
+    <div class="res-card"><div class="res-label">New Leads/Day</div><div class="res-value">${leadsPerDay}</div></div>
+    <div class="res-card"><div class="res-label">Follow-Ups/Day</div><div class="res-value">${followupsPerDay}</div></div>`;
+
+  document.getElementById('activityTable').innerHTML = `
+    <thead><tr><th>Activity</th><th>Daily</th><th>Weekly</th><th>Monthly</th></tr></thead>
+    <tbody>
+      <tr class="highlight-row"><td>New leads to add</td><td>${leadsPerDay}</td><td>${leadsPerDay*5}</td><td>${leadsNeeded}</td></tr>
+      <tr><td>Follow-up calls/msgs</td><td>${followupsPerDay}</td><td>${followupsPerDay*5}</td><td>${followupsPerDay*workDays}</td></tr>
+      <tr><td>Meetings / site visits</td><td>${Math.ceil(salesNeeded/workDays*2)}</td><td>${Math.ceil(salesNeeded/4)}</td><td>${salesNeeded*2}</td></tr>
+      <tr class="highlight-row"><td>Deals to close</td><td>${(salesNeeded/workDays).toFixed(1)}</td><td>${Math.ceil(salesNeeded/4)}</td><td>${salesNeeded}</td></tr>
+    </tbody>`;
+
+  const saving = Math.round((leadsNeeded - leadsIfImproved));
+  document.getElementById('insightBox').innerHTML = `
+    <strong>💡 Key Insight:</strong> You need <strong>${leadsPerDay} new leads every day</strong> to hit ₹${(target/100000).toFixed(1)}L/month at your current close rate of ${closeRate}%.
+    <br><br>If you improve your close rate by just 50% (from ${closeRate}% to ${improvedClose.toFixed(0)}%), you'd need <strong>${saving} fewer leads per month</strong> — saving hours of effort. LeadPilot's follow-up system is built to help you do exactly that.`;
+
+  document.getElementById('resultsCard').style.display='block';
+  document.getElementById('defaultCard').style.display='none';
+}
+</script>
+</body>
+</html>

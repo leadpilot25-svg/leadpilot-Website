@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp Follow-Up Scripts — LeadPilot Free Tool</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0f1e2e;--mint:#3ecf8e;--mint-light:#d6f5e8;--gray-100:#f0f4f2;--gray-200:#e2e9e5;--gray-400:#9aada4;--gray-600:#4d6259;--white:#fff;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--gray-100);color:var(--navy);padding-bottom:50px;}
+  header{background:var(--navy);padding:16px 24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between;}
+  .logo{font-family:'Sora',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;margin-right:auto;}
+  .logo span{color:var(--mint);}
+  .nav-back{color:#fff;text-decoration:none;font-size:0.85rem;font-weight:600;}
+  .nav-back:hover{color:var(--mint);}
+  .tabs{display:flex;gap:8px;padding:20px 24px 0;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--gray-200);overflow-x:auto;}
+  .tab{font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;padding:10px 18px;border-radius:999px;border:1.5px solid var(--gray-200);background:#fff;cursor:pointer;transition:all .2s;color:var(--gray-600);white-space:nowrap;margin-bottom:12px;}
+  .tab.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .tab:hover:not(.active){border-color:var(--mint);color:var(--mint);}
+  .content{padding:20px 24px;max-width:820px;margin:0 auto;}
+  .section-label{font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--gray-400);margin-bottom:14px;margin-top:24px;}
+  .script-card{background:#fff;border:1px solid var(--gray-200);border-radius:14px;padding:20px 22px;margin-bottom:14px;position:relative;box-shadow:0 2px 8px rgba(15,30,46,0.02);}
+  .script-card:hover{box-shadow:0 4px 16px rgba(15,30,46,0.06);}
+  .script-title{font-family:'Sora',sans-serif;font-size:0.88rem;font-weight:700;color:var(--navy);margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .script-tag{font-size:0.68rem;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap;}
+  .tag-first{background:#e8f0fe;color:#3b5bdb;}
+  .tag-followup{background:var(--mint-light);color:#1a8a55;}
+  .tag-closing{background:#fff0f0;color:#e04b4b;}
+  .tag-reactivate{background:#fff8e6;color:#b09400;}
+  .script-body{font-size:0.88rem;line-height:1.75;color:var(--navy);white-space:pre-wrap;background:var(--gray-100);border-radius:8px;padding:14px 16px;font-family:'DM Sans',sans-serif;margin-top:10px;word-break:break-word;}
+  .copy-btn{position:absolute;top:16px;right:16px;background:var(--mint);border:none;border-radius:8px;padding:6px 14px;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:var(--navy);cursor:pointer;transition:all .2s;}
+  .copy-btn:hover{background:#31b87c;}
+  .copy-btn.copied{background:#1a8a55;color:#fff;}
+  .wa-btn{display:inline-flex;align-items:center;gap:6px;background:#25d366;color:#fff;font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:700;padding:8px 18px;border-radius:999px;text-decoration:none;margin-top:12px;border:none;cursor:pointer;transition:all .2s;}
+  .wa-btn:hover{background:#1ea854;}
+  .personalise-bar{background:var(--mint-light);border:1px solid #a8eacc;border-radius:10px;padding:16px 20px;margin-bottom:20px;font-size:0.88rem;color:var(--gray-600);box-shadow:0 2px 6px rgba(15,30,46,0.02);}
+  .personalise-bar strong{color:var(--navy);}
+  .pi{display:inline-flex;gap:10px;flex-wrap:wrap;margin-top:10px;width:100%;}
+  .pi input{font-family:'DM Sans',sans-serif;font-size:0.85rem;padding:8px 12px;border:1.5px solid var(--gray-200);border-radius:8px;outline:none;width:100%;max-width:220px;background:#fff;}
+  .pi input:focus{border-color:var(--mint);}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  @media(max-width:600px){
+    .copy-btn{position:static;display:block;margin-bottom:10px;width:fit-content;}
+    .script-title{flex-wrap:wrap;}
+    .pi input{width:100%;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Lead<span>Pilot</span> <span style="opacity:.5;font-weight:400;font-size:0.85rem;">— WhatsApp Scripts</span></div>
+  <a href="/" class="nav-back">← Back to Home</a>
+</header>
+
+<div class="tabs">
+  <button class="tab active" onclick="switchTab('realestate',this)">🏠 Real Estate</button>
+  <button class="tab" onclick="switchTab('insurance',this)">🛡️ Insurance</button>
+  <button class="tab" onclick="switchTab('cars',this)">🚗 Car Dealers</button>
+  <button class="tab" onclick="switchTab('loans',this)">💰 Loans</button>
+  <button class="tab" onclick="switchTab('coaching',this)">🎓 Coaching</button>
+</div>
+
+<div class="content main">
+  <div class="personalise-bar">
+    <strong>✏️ Personalise your scripts:</strong> Enter your name and company to auto-fill below.
+    <div class="pi">
+      <input id="pi-name" placeholder="Your Name" oninput="personalise()">
+      <input id="pi-company" placeholder="Company Name" oninput="personalise()">
+    </div>
+  </div>
+
+  <!-- REAL ESTATE -->
+  <div class="tab-panel active" id="tab-realestate">
+    <div class="section-label">First Contact Scripts</div>
+
+    <div class="script-card">
+      <div class="script-title">🟢 Script 1 — First Message After Ad Lead <span class="script-tag tag-first">First Contact</span></div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-body" id="re-s1">Hi [CLIENT NAME] 👋
+
+I'm [YOUR NAME] from [YOUR COMPANY]. I saw your enquiry about a property — thanks for reaching out!
+
+May I ask what type of property are you looking for and which location? I'll share the best options for your budget right away.
+
+— [YOUR NAME]</div>
+      <button class="wa-btn" onclick="openWA(this)">Open in WhatsApp</button>
+    </div>
+
+    <div class="script-card">
+      <div class="script-title">🟡 Script 2 — Day 2 Follow-Up (No Reply) <span class="script-tag tag-followup">Follow-Up</span></div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-body" id="re-s2">Hi [CLIENT NAME], just checking in 😊
+
+I sent you a message yesterday about the property enquiry. I have a few options in your budget that I'd love to share.
+
+Takes less than 2 minutes to look at — would that be okay?
+
+[YOUR NAME] | [YOUR COMPANY]</div>
+      <button class="wa-btn" onclick="openWA(this)">Open in WhatsApp</button>
+    </div>
+
+    <div class="section-label">Hot Lead Scripts</div>
+
+    <div class="script-card">
+      <div class="script-title">🔴 Script 3 — Site Visit Confirmation <span class="script-tag tag-first">Visit</span></div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-body" id="re-s3">Hi [CLIENT NAME] ✅
+
+Your site visit is confirmed for [DATE] at [TIME].
+
+📍 Address: [PROPERTY ADDRESS]
+🚗 Parking available at the gate
+
+I'll be there to personally show you around. If anything changes, please let me know in advance.
+
+See you soon!
+[YOUR NAME] — [YOUR COMPANY]</div>
+      <button class="wa-btn" onclick="openWA(this)">Open in WhatsApp</button>
+    </div>
+
+    <div class="script-card">
+      <div class="script-title">💬 Script 4 — Post Site Visit Follow-Up <span class="script-tag tag-followup">Follow-Up</span></div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-body" id="re-s4">Hi [CLIENT NAME] 😊
+
+Hope you liked the property today! It was great showing you around.
+
+Did you have any questions or concerns after the visit? I'm happy to help with any details — loan options, floor plans, or negotiation.
+
+Looking forward to hearing from you!
+[YOUR NAME]</div>
+      <button class="wa-btn" onclick="openWA(this)">Open in WhatsApp</button>
+    </div>
+
+    <div class="section-label">Closing Scripts</div>
+
+    <div class="script-card">
+      <div class="script-title">🏁 Script 5 — Closing Push <span class="script-tag tag-closing">Closing</span></div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-body" id="re-s5">Hi [CLIENT NAME] 👋
+
+Just a quick update — there's been strong interest in the property you visited. The builder has 2 units left at the current price.
+
+I'd hate for you to miss it at this rate. If you're still considering, can we talk today or tomorrow to move forward?
+
+I'm here to make this as smooth as possible for you 🙏
+[YOUR NAME] | [YOUR COMPANY]</div>
+      <button class="wa-btn" onclick="openWA(this)">Open in WhatsApp</button>
+    </div>
+
+    <div class="script-card">
+      <div class="script-title">♻️ Script 6 — Re-activate Old Lead <span class="script-tag tag-reactivate">Re-activate</span></div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-body" id="re-s6">Hi [CLIENT NAME]! Hope you're doing well 😊
+
+We spoke a few months ago about a property in [AREA]. I know the timing wasn't right then.
+
+I wanted to share that we now have some new options that might suit you better — prices have also moved in a good direction.
+
+Would you be open to a quick 5-minute chat this week?
+[YOUR NAME]</div>
+      <button class="wa-btn" onclick="openWA(this)">Open in WhatsApp</button>
+    </div>
+  </div>
+
+  <!-- INSURANCE -->
+  <div class="tab-panel" id="tab-insurance">
+    <div class="section-label">First Contact Scripts</div>
+    <div class="script-card">
+      <div class="script-title">🟢 Script 1 — New Lead First Message <span class="script-tag tag-first">First Contact</span></div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-body">Hi [CLIENT NAME] 👋
+
+I'm [YOUR NAME] from [YOUR COMPANY]. I saw your enquiry about a policy — thanks for reaching out!
+
+Let me know what type of coverage you are seeking (Health / Life / Vehicle), and I will customize a quote for you.
+
+— [YOUR NAME]</div>
+      <button class="wa-btn" onclick="openWA(this)">Open in WhatsApp</button>
+    </div>
+    <div class="script-card">
+      <div class="script-title">🔔 Script 2 — Renewal Reminder <span class="script-tag tag-followup">Renewal</span></div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-body">Hi [CLIENT NAME] 😊
+
+A friendly reminder — your policy is due for renewal soon.
+
+Premium amount: ₹[AMOUNT]
+
+Would you like me to process the renewal? I can complete it in 10 minutes with no paperwork needed.
+
+Let me know and I'll take care of it!
+[YOUR NAME] | [YOUR COMPANY]</div>
+      <button class="wa-btn" onclick="openWA(this)">Open in WhatsApp</button>
+    </div>
+    <div class="script-card">
+      <div class="script-title">📋 Script 3 — Post-Claim Follow-Up <span class="script-tag tag-followup">After Claim</span></div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-body">Hi [CLIENT NAME] 🙏
+
+I wanted to check how your claim for [CLAIM TYPE] is going. Has the settlement been processed?
+
+If there are any delays or issues, please let me know — I'm here to help escalate it.
+
+Your satisfaction matters to me!
+[YOUR NAME]</div>
+      <button class="wa-btn" onclick="openWA(this)">Open in WhatsApp</button>
+    </div>
+  </div>
+
+  <!-- CARS -->
+  <div class="tab-panel" id="tab-cars">
+    <div class="section-label">First Contact Scripts</div>
+    <div class="script-card">
+      <div class="script-title">🟢 Script 1 — Respond to Car Enquiry <span class="script-tag tag-first">First Contact</span></div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-body">Hi [CLIENT NAME] 👋
+
+Thanks for your interest in [CAR MODEL]! I'm [YOUR NAME] from [YOUR COMPANY].
+
+The vehicle is available right now. Would you like to:
+✅ Book a test drive?
+✅ Get the on-road price?
+✅ Know about EMI options?
+
+Just let me know and I'll arrange everything today itself 🚗</div>
+      <button class="wa-btn" onclick="openWA(this)">Open in WhatsApp</button>
+    </div>
+    <div class="script-card">
+      <div class="script-title">🚗 Script 2 — Test Drive Follow-Up <span class="script-tag tag-followup">After Test Drive</span></div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-body">Hi [CLIENT NAME] 😊
+
+Hope you enjoyed the test drive of the [CAR MODEL] today!
+
+What did you think? I personally feel it's one of the smoothest cars in this segment.
+
+I can share the final on-road price and best finance options if you'd like to move forward. Just say the word! 🙌
+
+[YOUR NAME] | [YOUR COMPANY]</div>
+      <button class="wa-btn" onclick="openWA(this)">Open in WhatsApp</button>
+    </div>
+  </div>
+
+  <!-- LOANS -->
+  <div class="tab-panel" id="tab-loans">
+    <div class="section-label">First Contact Scripts</div>
+    <div class="script-card">
+      <div class="script-title">🟢 Script 1 — Loan Enquiry Response <span class="script-tag tag-first">First Contact</span></div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-body">Hi [CLIENT NAME] 👋
+
+I'm [YOUR NAME] — a loan advisor at [YOUR COMPANY]. I saw your enquiry about a loan.
+
+To check your eligibility quickly, may I know:
+1️⃣ What type of loan? (Home / Personal / Business)
+2️⃣ Loan amount needed?
+3️⃣ Are you salaried or self-employed?
+
+I'll get back to you with the best options within the hour 🙏</div>
+      <button class="wa-btn" onclick="openWA(this)">Open in WhatsApp</button>
+    </div>
+    <div class="script-card">
+      <div class="script-title">📄 Script 2 — Document Collection Follow-Up <span class="script-tag tag-followup">Documents</span></div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-body">Hi [CLIENT NAME] 😊
+
+Just following up on your loan application. We're almost there — I just need these documents to proceed:
+
+📋 Pending:
+• [DOCUMENT 1]
+• [DOCUMENT 2]
+
+Once I receive these, I can submit the application within 24 hours. The sooner we do this, the faster your loan gets approved!
+
+Please send them on WhatsApp whenever convenient 🙏
+[YOUR NAME]</div>
+      <button class="wa-btn" onclick="openWA(this)">Open in WhatsApp</button>
+    </div>
+  </div>
+
+  <!-- COACHING -->
+  <div class="tab-panel" id="tab-coaching">
+    <div class="section-label">First Contact Scripts</div>
+    <div class="script-card">
+      <div class="script-title">🟢 Script 1 — Course Enquiry Response <span class="script-tag tag-first">First Contact</span></div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-body">Hi [CLIENT NAME] 👋
+
+Thanks for reaching out about [COURSE NAME]! I'm [YOUR NAME] from [YOUR COMPANY].
+
+This program has helped students achieve great results. I'd love to understand what you're looking for.
+
+Can I ask — what's your main goal right now? I'll share the right details for you 😊</div>
+      <button class="wa-btn" onclick="openWA(this)">Open in WhatsApp</button>
+    </div>
+    <div class="script-card">
+      <div class="script-title">📞 Script 2 — Discovery Call Follow-Up <span class="script-tag tag-followup">Follow-Up</span></div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-body">Hi [CLIENT NAME] 😊
+
+It was great speaking with you earlier! As discussed, the coaching will help you with [MAIN BENEFIT].
+
+The next batch starts soon and seats are limited. I've kept one for you.
+
+Shall I send you the enrollment link? 🙏
+[YOUR NAME]</div>
+      <button class="wa-btn" onclick="openWA(this)">Open in WhatsApp</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Templates to restore when names change
+const rawTemplates = {};
+
+window.onload = function() {
+  // Save original templates
+  document.querySelectorAll('.script-body').forEach(el => {
+    rawTemplates[el.id || el.textContent.slice(0,25)] = el.textContent;
+  });
+
+  // Restore variables from localStorage
+  const savedName = localStorage.getItem('wa_user_name');
+  const savedCompany = localStorage.getItem('wa_user_company');
+
+  if(savedName) document.getElementById('pi-name').value = savedName;
+  if(savedCompany) document.getElementById('pi-company').value = savedCompany;
+
+  personalise();
+};
+
+function switchTab(id, btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+}
+
+function copyScript(btn){
+  const body = btn.nextElementSibling;
+  navigator.clipboard.writeText(body.textContent.trim()).then(()=>{
+    btn.textContent='✓ Copied!'; btn.classList.add('copied');
+    setTimeout(()=>{ btn.textContent='Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function openWA(btn){
+  const text = btn.previousElementSibling.textContent.trim();
+  window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(text), '_blank');
+}
+
+function personalise(){
+  const name = document.getElementById('pi-name').value.trim() || '[YOUR NAME]';
+  const company = document.getElementById('pi-company').value.trim() || '[YOUR COMPANY]';
+  
+  // Save to localStorage
+  localStorage.setItem('wa_user_name', name);
+  localStorage.setItem('wa_user_company', company);
+
+  document.querySelectorAll('.script-body').forEach(el=>{
+    const key = el.id || el.textContent.slice(0,25);
+    const originalText = rawTemplates[key] || el.textContent;
+    el.textContent = originalText.replace(/\[YOUR NAME\]/g, name).replace(/\[YOUR COMPANY\]/g, company);
+  });
+}
+</script>
+</body>
+</html>

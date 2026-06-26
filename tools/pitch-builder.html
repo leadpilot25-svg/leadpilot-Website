@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sales Pitch Builder — LeadPilot Free Tool</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0f1e2e;--mint:#3ecf8e;--mint-light:#d6f5e8;--gray-100:#f0f4f2;--gray-200:#e2e9e5;--gray-400:#9aada4;--gray-600:#4d6259;--white:#fff;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--gray-100);color:var(--navy);padding-bottom:50px;}
+  header{background:var(--navy);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-family:'Sora',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;}
+  .logo span{color:var(--mint);}
+  .nav-back{color:#fff;text-decoration:none;font-size:0.85rem;font-weight:600;}
+  .nav-back:hover{color:var(--mint);}
+  .main{max-width:860px;margin:0 auto;padding:28px 20px;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}
+  @media(max-width:768px){.main{grid-template-columns:1fr;}}
+  h2{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:800;margin-bottom:6px;}
+  .sub{font-size:0.88rem;color:var(--gray-600);margin-bottom:20px;}
+  .card{background:#fff;border:1px solid var(--gray-200);border-radius:16px;padding:24px;box-shadow:0 4px 12px rgba(15,30,46,0.03);}
+  .card h3{font-family:'Sora',sans-serif;font-size:1rem;font-weight:800;margin-bottom:16px;color:var(--navy);}
+  .field{margin-bottom:14px;}
+  label{font-size:0.75rem;font-weight:700;color:var(--gray-600);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px;}
+  input, select, textarea{font-family:'DM Sans',sans-serif;font-size:0.9rem;padding:10px 12px;border:1.5px solid var(--gray-200);border-radius:8px;outline:none;width:100%;transition:border-color .2s;background:#fff;}
+  input:focus, select:focus, textarea:focus{border-color:var(--mint);}
+  .btn{font-family:'Sora',sans-serif;font-weight:700;font-size:0.88rem;padding:12px 24px;border-radius:999px;border:none;cursor:pointer;transition:all .2s;width:100%;margin-top:4px;}
+  .btn-mint{background:var(--mint);color:var(--navy);box-shadow:0 4px 12px rgba(62,207,142,0.2);}
+  .btn-mint:hover{background:#31b87c;transform:translateY(-1px);}
+  .btn-navy{background:var(--navy);color:#fff;margin-top:8px;}
+  .result-area{display:none;}
+  .result-area.show{display:block;}
+  .pitch-block{background:var(--gray-100);border-radius:10px;padding:16px;margin-bottom:12px;position:relative;border-left:3px solid var(--mint);}
+  .pitch-block-label{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mint);margin-bottom:6px;}
+  .pitch-block-text{font-size:0.9rem;color:var(--navy);line-height:1.7;white-space:pre-wrap;word-break:break-word;}
+  .copy-all-btn{background:var(--mint);border:none;border-radius:8px;padding:8px 16px;font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:700;color:var(--navy);cursor:pointer;margin-bottom:14px;transition:all .2s;display:inline-block;}
+  .copy-all-btn:hover{background:#31b87c;}
+  .tip-box{background:var(--mint-light);border:1px solid #a8eacc;border-radius:10px;padding:14px 16px;font-size:0.82rem;color:var(--gray-600);line-height:1.65;margin-top:12px;}
+  .tip-box strong{color:var(--navy);}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Lead<span>Pilot</span> <span style="opacity:.5;font-weight:400;font-size:0.85rem;">— Pitch Builder</span></div>
+  <a href="/" class="nav-back">← Back to Home</a>
+</header>
+
+<div style="max-width:860px;margin:0 auto;padding:28px 20px 0">
+  <h2>📝 Sales Pitch Script Builder</h2>
+  <p style="font-size:0.88rem;color:var(--gray-600);margin-bottom:0">Fill in the details below and get your perfect 60-second pitch — ready to use on any call.</p>
+</div>
+
+<div class="main">
+  <div class="card">
+    <h3>Your Details</h3>
+    <div class="field"><label>Your Name</label><input id="b-name" placeholder="e.g. Rahul Verma"></div>
+    <div class="field"><label>Your Industry</label>
+      <select id="b-industry" onchange="updateFields()">
+        <option value="realestate">Real Estate Agent</option>
+        <option value="insurance">Insurance Agent</option>
+        <option value="cars">Car Dealer</option>
+        <option value="loans">Loan Agent</option>
+        <option value="coaching">Coach / Trainer</option>
+      </select>
+    </div>
+    <div class="field"><label>Company / Agency Name</label><input id="b-company" placeholder="e.g. Dream Homes Realty"></div>
+    <div class="field"><label id="prod-label">What you sell (product/speciality)</label><input id="b-product" placeholder="e.g. 2 & 3 BHK flats in Thane"></div>
+    <div class="field"><label id="benefit-label">Key benefit you provide</label><input id="b-benefit" placeholder="e.g. site visits the same day and honest advice"></div>
+    <div class="field"><label>Your city / area</label><input id="b-city" placeholder="e.g. Mumbai"></div>
+    <div class="field"><label>One success result or proof</label><input id="b-proof" placeholder="e.g. helped 80+ families buy their dream home"></div>
+    <button class="btn btn-mint" onclick="buildPitch()">Build My Pitch →</button>
+  </div>
+
+  <div>
+    <div class="card result-area" id="resultCard">
+      <h3>Your 60-Second Pitch</h3>
+      <button class="copy-all-btn" onclick="copyAll()">📋 Copy Full Script</button>
+      <div id="pitchOutput"></div>
+      <div class="tip-box">
+        <strong>💡 Delivery Tips:</strong><br>
+        • Speak slowly and clearly — don't rush<br>
+        • Pause after your name and company<br>
+        • End with a question to start a conversation<br>
+        • Practice 3× in front of a mirror before calling
+      </div>
+      <button class="btn btn-navy" onclick="document.getElementById('resultCard').classList.remove('show')">← Edit Details</button>
+    </div>
+    <div class="card" id="previewCard">
+      <h3>💬 What You'll Get</h3>
+      <p style="font-size:0.88rem;color:var(--gray-600);line-height:1.7;margin-bottom:14px">Your pitch will be split into 5 parts for easy delivery:</p>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="background:var(--gray-100);border-radius:8px;padding:10px 14px;font-size:0.82rem;border-left:3px solid var(--mint)"><strong>1. Introduction</strong> — Who you are and where you're from</div>
+        <div style="background:var(--gray-100);border-radius:8px;padding:10px 14px;font-size:0.82rem;border-left:3px solid #4f7aff"><strong>2. What You Do</strong> — Your speciality and value</div>
+        <div style="background:var(--gray-100);border-radius:8px;padding:10px 14px;font-size:0.82rem;border-left:3px solid #e06c00"><strong>3. Proof / Credibility</strong> — Why trust you</div>
+        <div style="background:var(--gray-100);border-radius:8px;padding:10px 14px;font-size:0.82rem;border-left:3px solid #e9547a"><strong>4. Value Offer</strong> — What's in it for them</div>
+        <div style="background:var(--gray-100);border-radius:8px;padding:10px 14px;font-size:0.82rem;border-left:3px solid var(--mint)"><strong>5. Call to Action</strong> — The next step</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const industryDefaults = {
+  realestate: {prod:'residential properties in [your area]', benefit:'site visits the same day and honest advice'},
+  insurance:  {prod:'life, health, and vehicle insurance plans', benefit:'best coverage at the lowest premium'},
+  cars:       {prod:'new and used cars with the best deals', benefit:'test drives at your convenience and easy EMI'},
+  loans:      {prod:'home, personal, and business loans', benefit:'fast approvals with minimal documentation'},
+  coaching:   {prod:'professional coaching and training programs', benefit:'real results within 60 days or a full refund'},
+};
+
+window.onload = function() {
+  // Load saved inputs from localStorage
+  if(localStorage.getItem('pitch_name')) document.getElementById('b-name').value = localStorage.getItem('pitch_name');
+  if(localStorage.getItem('pitch_industry')) {
+    document.getElementById('b-industry').value = localStorage.getItem('pitch_industry');
+  }
+  if(localStorage.getItem('pitch_company')) document.getElementById('b-company').value = localStorage.getItem('pitch_company');
+  if(localStorage.getItem('pitch_product')) document.getElementById('b-product').value = localStorage.getItem('pitch_product');
+  if(localStorage.getItem('pitch_benefit')) document.getElementById('b-benefit').value = localStorage.getItem('pitch_benefit');
+  if(localStorage.getItem('pitch_city')) document.getElementById('b-city').value = localStorage.getItem('pitch_city');
+  if(localStorage.getItem('pitch_proof')) document.getElementById('b-proof').value = localStorage.getItem('pitch_proof');
+  
+  updateFields();
+};
+
+function updateFields(){
+  const ind = document.getElementById('b-industry').value;
+  const d = industryDefaults[ind];
+  document.getElementById('b-product').placeholder = 'e.g. '+d.prod;
+  document.getElementById('b-benefit').placeholder = 'e.g. '+d.benefit;
+}
+
+function buildPitch(){
+  const name = document.getElementById('b-name').value.trim() || '[Your Name]';
+  const industry = document.getElementById('b-industry').value;
+  const company = document.getElementById('b-company').value.trim() || '[Your Company]';
+  const product = document.getElementById('b-product').value.trim() || industryDefaults[industry].prod;
+  const benefit = document.getElementById('b-benefit').value.trim() || industryDefaults[industry].benefit;
+  const city = document.getElementById('b-city').value.trim() || '[Your City]';
+  const proof = document.getElementById('b-proof').value.trim() || 'helped many clients achieve their goals';
+
+  // Save to localStorage
+  localStorage.setItem('pitch_name', name);
+  localStorage.setItem('pitch_industry', industry);
+  localStorage.setItem('pitch_company', company);
+  localStorage.setItem('pitch_product', product);
+  localStorage.setItem('pitch_benefit', benefit);
+  localStorage.setItem('pitch_city', city);
+  localStorage.setItem('pitch_proof', proof);
+
+  const blocks = [
+    {label:'1 — Introduction', text:`Hi, my name is ${name}, and I'm calling from ${company} in ${city}.`},
+    {label:'2 — What I Do', text:`I specialise in ${product}.\nI work with clients who are looking for ${benefit}.`},
+    {label:'3 — Credibility', text:`Over the years, we've ${proof}.\nMost of our clients trust us because of the honest service and reliability we provide.`},
+    {label:'4 — Value Offer', text:`I'm not here to push a sales contract today. I just want to understand what you're looking for, and share what's currently available that might suit you perfectly — no obligation at all.`},
+    {label:'5 — Call to Action', text:`Would you have 5 minutes for me to share a couple of options? I promise you'll find it highly useful.\n\n[Wait for answer. If yes — discuss. If no — schedule callback.]`},
+  ];
+
+  const colors = ['var(--mint)','#4f7aff','#e06c00','#e9547a','var(--mint)'];
+
+  document.getElementById('pitchOutput').innerHTML = blocks.map((b,i)=>`
+    <div class="pitch-block" style="border-left-color:${colors[i]}">
+      <div class="pitch-block-label">${b.label}</div>
+      <div class="pitch-block-text">${b.text}</div>
+    </div>`).join('');
+
+  document.getElementById('resultCard').classList.add('show');
+  document.getElementById('previewCard').style.display='none';
+  document.getElementById('resultCard').scrollIntoView({behavior:'smooth'});
+}
+
+function copyAll(){
+  const texts = [...document.querySelectorAll('.pitch-block-text')].map(el=>el.textContent.trim()).join('\n\n');
+  navigator.clipboard.writeText(texts).then(()=>{ 
+    const btn=document.querySelector('.copy-all-btn'); 
+    btn.textContent='✓ Copied!'; 
+    setTimeout(()=>btn.textContent='📋 Copy Full Script',2000); 
+  });
+}
+</script>
+</body>
+</html>

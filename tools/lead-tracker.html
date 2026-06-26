@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Tracking Sheet — LeadPilot Free Tool</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#0f1e2e; --mint:#3ecf8e; --mint-light:#d6f5e8; --gray-100:#f0f4f2; --gray-200:#e2e9e5; --gray-400:#9aada4; --gray-600:#4d6259; --white:#fff; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--gray-100);color:var(--navy);min-height:100vh;}
+  header{background:var(--navy);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  .logo{font-family:'Sora',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;}
+  .logo span{color:var(--mint);}
+  .header-actions{display:flex;gap:10px;align-items:center;}
+  .btn{font-family:'Sora',sans-serif;font-weight:700;font-size:0.8rem;padding:10px 18px;border-radius:999px;border:none;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px;}
+  .btn-mint{background:var(--mint);color:var(--navy);box-shadow: 0 4px 10px rgba(62,207,142,0.2);}
+  .btn-mint:hover{background:#31b87c;transform:translateY(-1px);}
+  .btn-outline{background:none;border:1.5px solid rgba(255,255,255,0.3);color:#fff;}
+  .btn-outline:hover{border-color:var(--mint);color:var(--mint);}
+  
+  .toolbar{background:#fff;padding:14px 24px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--gray-200);position:sticky;top:0;z-index:10;}
+  .toolbar input{font-family:'DM Sans',sans-serif;font-size:0.88rem;padding:9px 14px;border:1.5px solid var(--gray-200);border-radius:8px;outline:none;width:240px;transition:border-color .2s;}
+  .toolbar input:focus{border-color:var(--mint);}
+  .toolbar select{font-family:'DM Sans',sans-serif;font-size:0.88rem;padding:9px 12px;border:1.5px solid var(--gray-200);border-radius:8px;outline:none;cursor:pointer;background:#fff;transition:border-color .2s;}
+  .toolbar select:focus{border-color:var(--mint);}
+  .count{font-size:0.85rem;color:var(--gray-400);margin-left:auto;font-weight:700;}
+  
+  .table-wrap{overflow-x:auto;padding:20px 24px;}
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 20px rgba(15,30,46,0.04);border:1px solid var(--gray-200);}
+  thead tr{background:var(--navy);}
+  th{font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:rgba(255,255,255,0.9);padding:14px;text-align:left;white-space:nowrap;letter-spacing:0.04em;text-transform:uppercase;}
+  td{font-size:0.88rem;padding:12px 14px;border-bottom:1px solid var(--gray-100);vertical-align:middle;}
+  tr:last-child td{border-bottom:none;}
+  tr:hover td{background:var(--gray-100);}
+  
+  /* Status Badges */
+  .status-badge{font-size:0.72rem;font-weight:700;padding:4px 12px;border-radius:999px;white-space:nowrap;display:inline-block;}
+  .s-new{background:#e8f0fe;color:#3b5bdb;}
+  .s-contacted{background:#fff3e0;color:#e06c00;}
+  .s-hot{background:#fff0f0;color:#e04b4b;}
+  .s-warm{background:#fffde7;color:#b09400;}
+  .s-closed{background:var(--mint-light);color:#1a8a55;}
+  .s-dead{background:#f5f5f5;color:#999;}
+  .source-badge{font-size:0.72rem;padding:3px 8px;border-radius:6px;background:var(--gray-100);color:var(--gray-600);font-weight:600;}
+  
+  .add-row-btn{width:100%;padding:14px;background:var(--gray-100);border:2px dashed var(--gray-200);border-radius:0 0 14px 14px;font-family:'Sora',sans-serif;font-size:0.88rem;font-weight:600;color:var(--gray-600);cursor:pointer;transition:all .2s;}
+  .add-row-btn:hover{background:var(--mint-light);border-color:var(--mint);color:var(--navy);}
+  
+  /* Mobile list view layout */
+  .mobile-cards-wrap{display:none;padding:16px;flex-direction:column;gap:12px;}
+  .lead-mobile-card{background:#fff;border:1px solid var(--gray-200);border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(15,30,46,0.03);position:relative;}
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+  .card-name{font-size:0.95rem;font-weight:800;color:var(--navy);}
+  .card-industry{font-size:0.7rem;color:var(--gray-400);font-weight:600;text-transform:uppercase;margin-top:2px;}
+  .card-details{font-size:0.82rem;color:var(--gray-600);display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:12px 0;padding:10px 0;border-top:1px solid var(--gray-100);border-bottom:1px solid var(--gray-100);}
+  .card-label{font-size:0.72rem;color:var(--gray-400);text-transform:uppercase;font-weight:700;}
+  .card-actions{display:flex;justify-content:space-between;align-items:center;margin-top:10px;}
+  
+  /* MODAL */
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:100;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(3px);}
+  .modal-overlay.active{display:flex;}
+  .modal{background:#fff;border-radius:16px;padding:28px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;box-shadow: 0 10px 30px rgba(0,0,0,0.15);}
+  .modal h3{font-family:'Sora',sans-serif;font-size:1.15rem;font-weight:800;margin-bottom:20px;color:var(--navy);}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .form-group{display:flex;flex-direction:column;gap:5px;}
+  .form-group.full{grid-column:1/-1;}
+  label{font-size:0.75rem;font-weight:700;color:var(--gray-600);text-transform:uppercase;letter-spacing:0.05em;}
+  .form-group input,.form-group select,.form-group textarea{font-family:'DM Sans',sans-serif;font-size:0.9rem;padding:9px 12px;border:1.5px solid var(--gray-200);border-radius:8px;outline:none;}
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--mint);}
+  .modal-actions{display:flex;gap:10px;margin-top:24px;justify-content:flex-end;}
+  
+  /* Action Buttons */
+  .del-btn{background:none;border:none;cursor:pointer;color:var(--gray-400);font-size:1.1rem;padding:6px;transition:color .2s;}
+  .del-btn:hover{color:#e04b4b;}
+  .edit-btn{background:none;border:none;cursor:pointer;color:var(--gray-400);font-size:1.1rem;padding:6px;transition:color .2s;}
+  .edit-btn:hover{color:var(--mint);}
+  .wa-badge-btn{color:var(--mint);font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:4px;}
+  .wa-badge-btn:hover{text-decoration:underline;}
+  
+  .stats-row{display:flex;gap:12px;padding:16px 24px;background:#fff;border-bottom:1px solid var(--gray-200);flex-wrap:wrap;}
+  .stat-chip{background:var(--gray-100);border-radius:8px;padding:10px 16px;text-align:center;min-width:100px;flex:1;}
+  .stat-chip-num{font-family:'Sora',sans-serif;font-weight:800;font-size:1.2rem;color:var(--navy);}
+  .stat-chip-label{font-size:0.72rem;color:var(--gray-600);text-transform:uppercase;font-weight:700;margin-top:2px;}
+  .export-note{font-size:0.75rem;color:var(--gray-400);padding:8px 24px 20px;text-align:right;}
+
+  @media(max-width:768px){
+    .table-wrap{display:none;}
+    .mobile-cards-wrap{display:flex;}
+    .toolbar input{width:100%;}
+    .count{width:100%;text-align:left;margin-top:8px;}
+    .stat-chip{min-width:80px;padding:8px;}
+    .stat-chip-num{font-size:1rem;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Lead<span>Pilot</span> <span style="opacity:.5;font-weight:400;font-size:0.85rem;">— Free Lead Tracker</span></div>
+  <div class="header-actions">
+    <a href="/" class="btn btn-outline" style="border:none;margin-right:10px;">← Main Page</a>
+    <button class="btn btn-outline" onclick="exportCSV()">⬇ Export CSV</button>
+    <button class="btn btn-mint" onclick="openModal()">+ Add Lead</button>
+  </div>
+</header>
+
+<div class="stats-row" id="statsRow"></div>
+
+<div class="toolbar">
+  <input type="text" id="searchInput" placeholder="🔍 Search by name, phone, notes..." oninput="renderTable()">
+  <select id="filterStatus" onchange="renderTable()">
+    <option value="">All Status</option>
+    <option>New</option><option>Contacted</option><option>Hot</option><option>Warm</option><option>Closed</option><option>Dead</option>
+  </select>
+  <select id="filterSource" onchange="renderTable()">
+    <option value="">All Sources</option>
+    <option>Facebook Ad</option><option>WhatsApp</option><option>Referral</option><option>Walk-in</option><option>Instagram</option><option>Website</option><option>Other</option>
+  </select>
+  <span class="count" id="countLabel">0 leads</span>
+</div>
+
+<!-- DESKTOP TABLE VIEW -->
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>#</th><th>Name</th><th>Phone</th><th>Interest</th><th>Source</th><th>Status</th><th>Follow-Up Date</th><th>Budget</th><th>Notes</th><th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="leadsBody"></tbody>
+  </table>
+  <button class="add-row-btn" onclick="openModal()">+ Add New Lead</button>
+</div>
+
+<!-- MOBILE CARD VIEW -->
+<div class="mobile-cards-wrap" id="mobileLeadsBody"></div>
+
+<p class="export-note">💡 Click "Export CSV" to open in Excel or Google Sheets. Data is stored safely on your device.</p>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h3 id="modalTitle">➕ Add New Lead</h3>
+    <div class="form-grid">
+      <div class="form-group"><label>Full Name *</label><input id="f-name" placeholder="e.g. Rahul Kapoor"></div>
+      <div class="form-group"><label>Phone / WhatsApp *</label><input id="f-phone" placeholder="9876543210"></div>
+      <div class="form-group"><label>Interest / Requirement</label><input id="f-interest" placeholder="e.g. 2BHK Andheri"></div>
+      <div class="form-group"><label>Lead Source</label>
+        <select id="f-source"><option>Facebook Ad</option><option>WhatsApp</option><option>Referral</option><option>Walk-in</option><option>Instagram</option><option>Website</option><option>Other</option></select>
+      </div>
+      <div class="form-group"><label>Status</label>
+        <select id="f-status"><option>New</option><option>Contacted</option><option>Warm</option><option>Hot</option><option>Closed</option><option>Dead</option></select>
+      </div>
+      <div class="form-group"><label>Budget</label><input id="f-budget" placeholder="e.g. ₹50L"></div>
+      <div class="form-group"><label>Follow-Up Date</label><input type="date" id="f-followup"></div>
+      <div class="form-group"><label>Industry</label>
+        <select id="f-industry"><option>Real Estate</option><option>Insurance</option><option>Car Dealer</option><option>Loan</option><option>Coaching</option><option>Other</option></select>
+      </div>
+      <div class="form-group full"><label>Notes</label><textarea id="f-notes" rows="2" placeholder="What did you discuss?"></textarea></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" style="color:var(--navy);border-color:var(--gray-200);background:#fff;" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-mint" onclick="saveLead()">Save Lead</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let leads = JSON.parse(localStorage.getItem('lp_leads') || '[]');
+let editIdx = null;
+
+const statusClass = {New:'s-new',Contacted:'s-contacted',Hot:'s-hot',Warm:'s-warm',Closed:'s-closed',Dead:'s-dead'};
+
+function save(){ localStorage.setItem('lp_leads', JSON.stringify(leads)); }
+
+// Secure WhatsApp Link Formatter
+function getWaLink(phone) {
+  if(!phone) return '#';
+  // Strip non-numeric chars
+  let cleaned = phone.replace(/\D/g, '');
+  if(cleaned.length === 10) {
+    cleaned = '91' + cleaned;
+  }
+  return 'https://wa.me/' + cleaned;
+}
+
+function renderStats(){
+  const counts = {Total:leads.length, Hot:0, Warm:0, Closed:0, 'Follow Up':0};
+  const today = new Date().toISOString().split('T')[0];
+  leads.forEach(l => {
+    if(l.status==='Hot') counts.Hot++;
+    if(l.status==='Warm') counts.Warm++;
+    if(l.status==='Closed') counts.Closed++;
+    if(l.followup && l.followup <= today && l.status!=='Closed' && l.status!=='Dead') counts['Follow Up']++;
+  });
+  document.getElementById('statsRow').innerHTML = Object.entries(counts).map(([k,v]) =>
+    `<div class="stat-chip"><div class="stat-chip-num">${v}</div><div class="stat-chip-label">${k}</div></div>`
+  ).join('');
+}
+
+function renderTable(){
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const st = document.getElementById('filterStatus').value;
+  const src = document.getElementById('filterSource').value;
+  const today = new Date().toISOString().split('T')[0];
+  
+  let filtered = leads.filter((l,i) => {
+    const match = !q || [l.name,l.phone,l.interest,l.notes].join(' ').toLowerCase().includes(q);
+    const sMatch = !st || l.status===st;
+    const srcMatch = !src || l.source===src;
+    return match && sMatch && srcMatch;
+  });
+  
+  document.getElementById('countLabel').textContent = filtered.length + ' lead' + (filtered.length!==1?'s':'');
+  
+  const tbody = document.getElementById('leadsBody');
+  const mDiv = document.getElementById('mobileLeadsBody');
+  
+  if(!filtered.length){
+    tbody.innerHTML = `<tr><td colspan="10" style="text-align:center;padding:40px;color:var(--gray-400);">No leads found. Click "+ Add Lead" to start.</td></tr>`;
+    mDiv.innerHTML = `<div style="text-align:center;padding:40px;color:var(--gray-400);background:#fff;border-radius:12px;">No leads found. Click "+ Add Lead" to start.</div>`;
+    return;
+  }
+  
+  // Render Desktop
+  tbody.innerHTML = filtered.map((l, fi) => {
+    const realIdx = leads.indexOf(l);
+    const isDue = l.followup && l.followup <= today && l.status!=='Closed' && l.status!=='Dead';
+    return `<tr>
+      <td style="color:var(--gray-400);font-size:0.78rem">${realIdx+1}</td>
+      <td><strong>${l.name||'—'}</strong>${l.industry?`<br><span style="font-size:0.72rem;color:var(--gray-400)">${l.industry}</span>`:''}</td>
+      <td><a href="${getWaLink(l.phone)}" target="_blank" class="wa-badge-btn">📱 ${l.phone||'—'}</a></td>
+      <td>${l.interest||'—'}</td>
+      <td><span class="source-badge">${l.source||'—'}</span></td>
+      <td><span class="status-badge ${statusClass[l.status]||'s-new'}">${l.status||'New'}</span></td>
+      <td style="${isDue?'color:#e04b4b;font-weight:700':''}">${l.followup||'—'}${isDue?' ⚠️':''}</td>
+      <td>${l.budget||'—'}</td>
+      <td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--gray-600)" title="${l.notes||''}">${l.notes||'—'}</td>
+      <td style="white-space:nowrap">
+        <button class="edit-btn" onclick="editLead(${realIdx})" title="Edit">✏️</button>
+        <button class="del-btn" onclick="deleteLead(${realIdx})" title="Delete">🗑</button>
+      </td>
+    </tr>`;
+  }).join('');
+  
+  // Render Mobile Cards
+  mDiv.innerHTML = filtered.map((l) => {
+    const realIdx = leads.indexOf(l);
+    const isDue = l.followup && l.followup <= today && l.status!=='Closed' && l.status!=='Dead';
+    return `
+      <div class="card" style="margin-bottom: 10px;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
+          <div>
+            <h4 style="font-family:'Sora',sans-serif;font-weight:800;font-size:1rem;">${l.name||'—'}</h4>
+            <div class="card-industry">${l.industry||'General'}</div>
+          </div>
+          <span class="status-badge ${statusClass[l.status]||'s-new'}">${l.status||'New'}</span>
+        </div>
+        <div class="card-details">
+          <div><div class="card-label">Interest</div><div>${l.interest||'—'}</div></div>
+          <div><div class="card-label">Budget</div><div>${l.budget||'—'}</div></div>
+          <div><div class="card-label">Follow-Up</div><div style="${isDue?'color:#e04b4b;font-weight:700':''}">${l.followup||'—'}${isDue?' ⚠️':''}</div></div>
+          <div><div class="card-label">Source</div><div><span class="source-badge">${l.source||'—'}</span></div></div>
+        </div>
+        ${l.notes?`<div style="font-size:0.8rem;color:var(--gray-600);background:var(--gray-100);padding:8px;border-radius:6px;margin-bottom:12px;word-break:break-word;"><strong>Notes:</strong> ${l.notes}</div>`:''}
+        <div class="card-actions">
+          <a href="${getWaLink(l.phone)}" target="_blank" class="btn btn-mint" style="font-size:0.75rem;padding:6px 14px;">📱 WhatsApp</a>
+          <div>
+            <button class="edit-btn" onclick="editLead(${realIdx})" style="padding:4px 8px;">✏️</button>
+            <button class="del-btn" onclick="deleteLead(${realIdx})" style="padding:4px 8px;">🗑</button>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+  
+  renderStats();
+}
+
+function openModal(){ editIdx=null; document.getElementById('modalTitle').textContent='➕ Add New Lead'; clearForm(); document.getElementById('modalOverlay').classList.add('active'); }
+function closeModal(){ document.getElementById('modalOverlay').classList.remove('active'); }
+function clearForm(){ ['name','phone','interest','budget','followup','notes'].forEach(f=>document.getElementById('f-'+f).value=''); document.getElementById('f-status').value='New'; document.getElementById('f-source').value='Facebook Ad'; }
+
+function saveLead(){
+  const name = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  if(!name){ alert('Please enter a name.'); return; }
+  if(!phone){ alert('Please enter a phone number.'); return; }
+  
+  const lead = {
+    name, phone,
+    interest: document.getElementById('f-interest').value.trim(),
+    source: document.getElementById('f-source').value,
+    status: document.getElementById('f-status').value,
+    budget: document.getElementById('f-budget').value.trim(),
+    followup: document.getElementById('f-followup').value,
+    industry: document.getElementById('f-industry').value,
+    notes: document.getElementById('f-notes').value.trim(),
+    added: new Date().toISOString()
+  };
+  if(editIdx!==null) leads[editIdx]=lead; else leads.unshift(lead);
+  save(); closeModal(); renderTable();
+}
+
+function editLead(idx){ editIdx=idx; const l=leads[idx];
+  document.getElementById('modalTitle').textContent='✏️ Edit Lead';
+  document.getElementById('f-name').value=l.name||'';
+  document.getElementById('f-phone').value=l.phone||'';
+  document.getElementById('f-interest').value=l.interest||'';
+  document.getElementById('f-source').value=l.source||'Facebook Ad';
+  document.getElementById('f-status').value=l.status||'New';
+  document.getElementById('f-budget').value=l.budget||'';
+  document.getElementById('f-followup').value=l.followup||'';
+  document.getElementById('f-industry').value=l.industry||'Real Estate';
+  document.getElementById('f-notes').value=l.notes||'';
+  document.getElementById('modalOverlay').classList.add('active');
+}
+
+function deleteLead(idx){ if(confirm('Are you sure you want to delete this lead?')){ leads.splice(idx,1); save(); renderTable(); } }
+
+function exportCSV(){
+  if(!leads || leads.length === 0){
+    alert('No leads to export. Add some leads first!');
+    return;
+  }
+  const headers = ['#','Name','Phone','Interest','Source','Status','Follow-Up Date','Budget','Industry','Notes','Added On'];
+  const rows = leads.map((l,i) => [
+    i+1,
+    l.name||'',
+    l.phone||'',
+    l.interest||'',
+    l.source||'',
+    l.status||'',
+    l.followup||'',
+    l.budget||'',
+    l.industry||'',
+    l.notes||'',
+    l.added ? new Date(l.added).toLocaleDateString('en-IN') : ''
+  ].map(v=>`"${String(v).replace(/"/g,'""')}"`));
+  
+  const csv = [headers.map(h=>`"${h}"`), ...rows].map(r=>r.join(',')).join('\r\n');
+  const BOM = '\uFEFF'; // UTF-8 BOM for Excel compatibility
+  const blob = new Blob([BOM + csv], {type: 'text/csv;charset=utf-8;'});
+  
+  const link = document.createElement("a");
+  const url = URL.createObjectURL(blob);
+  link.setAttribute("href", url);
+  link.setAttribute("download", `leadpilot-leads-${new Date().toISOString().split('T')[0]}.csv`);
+  link.style.visibility = 'hidden';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+document.getElementById('modalOverlay').addEventListener('click', e => { if(e.target===document.getElementById('modalOverlay')) closeModal(); });
+
+// Load sample data if completely empty
+if(!leads.length){
+  leads = [
+    {name:'Rahul Kapoor',phone:'9876543210',interest:'3BHK Powai',source:'Facebook Ad',status:'Hot',budget:'₹90L',followup:new Date().toISOString().split('T')[0],industry:'Real Estate',notes:'Very interested, wants site visit this weekend'},
+    {name:'Priya Sharma',phone:'9123456789',interest:'Plot Thane',source:'Referral',status:'Warm',budget:'₹40L',followup:'',industry:'Real Estate',notes:'Called twice, need to follow up again'},
+    {name:'Anil Mehta',phone:'9988776655',interest:'2BHK Andheri',source:'WhatsApp',status:'New',budget:'₹65L',followup:'',industry:'Real Estate',notes:''},
+  ];
+  save();
+}
+renderTable(); renderStats();
+</script>
+</body>
+</html>

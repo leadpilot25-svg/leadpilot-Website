@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Follow-Up Planner — LeadPilot Free Tool</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0f1e2e;--mint:#3ecf8e;--mint-light:#d6f5e8;--gray-100:#f0f4f2;--gray-200:#e2e9e5;--gray-400:#9aada4;--gray-600:#4d6259;--white:#fff;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--gray-100);color:var(--navy);}
+  header{background:var(--navy);padding:16px 24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .logo{font-family:'Sora',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;margin-right:auto;}
+  .logo span{color:var(--mint);}
+  .nav-back{color:#fff;text-decoration:none;font-size:0.85rem;font-weight:600;margin-right:15px;}
+  .nav-back:hover{color:var(--mint);}
+  .btn{font-family:'Sora',sans-serif;font-weight:700;font-size:0.8rem;padding:8px 18px;border-radius:999px;border:none;cursor:pointer;transition:all .2s;}
+  .btn-mint{background:var(--mint);color:var(--navy);}
+  .btn-danger{background:#e04b4b;color:#fff;}
+  .btn-mint:hover{background:#31b87c;}
+  .main{max-width:1000px;margin:0 auto;padding:24px;}
+  h2{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:800;margin-bottom:6px;}
+  .sub{font-size:0.88rem;color:var(--gray-600);margin-bottom:20px;}
+  .week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-bottom:28px;}
+  .day-col{background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--gray-200);min-height:240px;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);}
+  .day-header{background:var(--navy);color:#fff;font-family:'Sora',sans-serif;font-weight:700;font-size:0.75rem;padding:10px;text-align:center;line-height:1.4;}
+  .day-header.today-h{background:var(--mint);color:var(--navy);}
+  .day-tasks{padding:10px;display:flex;flex-direction:column;gap:6px;flex:1;overflow-y:auto;}
+  .task-item{background:var(--gray-100);border-radius:6px;padding:8px;font-size:0.75rem;display:flex;gap:6px;align-items:flex-start;border-left:3px solid var(--mint);transition:all .15s;}
+  .task-item.done{opacity:.55;text-decoration:line-through;border-left-color:var(--gray-400);background:#fbfbfb;}
+  .task-item input[type=checkbox]{margin-top:2px;cursor:pointer;accent-color:var(--mint);width:15px;height:15px;}
+  .task-text{flex:1;line-height:1.4;cursor:pointer;word-break:break-word;}
+  .del-t{background:none;border:none;cursor:pointer;color:var(--gray-400);font-size:0.95rem;flex-shrink:0;padding:0 2px;}
+  .del-t:hover{color:#e04b4b;}
+  .add-task-row{padding:8px;border-top:1px solid var(--gray-100);}
+  .add-task-row input{width:100%;font-size:0.75rem;padding:6px 8px;border:1px solid var(--gray-200);border-radius:6px;outline:none;font-family:'DM Sans',sans-serif;box-sizing:border-box;}
+  .add-task-row input:focus{border-color:var(--mint);}
+  .week-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:10px;}
+  .week-nav button{background:#fff;border:1.5px solid var(--gray-200);border-radius:8px;padding:8px 16px;cursor:pointer;font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:600;transition:all .2s;}
+  .week-nav button:hover{border-color:var(--mint);color:var(--mint);}
+  .week-label{font-family:'Sora',sans-serif;font-weight:700;font-size:1rem;}
+  .stats-bar{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;}
+  .stat-pill{background:#fff;border:1px solid var(--gray-200);border-radius:8px;padding:10px 18px;font-size:0.85rem;display:flex;align-items:center;gap:6px;}
+  .stat-num{font-family:'Sora',sans-serif;font-weight:800;color:var(--mint);}
+  .planner-actions{display:flex;gap:10px;margin-bottom:20px;justify-content:flex-end;}
+  @media(max-width:900px){
+    .week-grid{grid-template-columns:repeat(3,1fr);}
+  }
+  @media(max-width:600px){
+    .week-grid{grid-template-columns:1fr;}
+    .day-col{min-height:auto;}
+    .week-nav{flex-direction:column;align-items:center;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Lead<span>Pilot</span> <span style="opacity:.5;font-weight:400;font-size:0.85rem;">— Follow-Up Planner</span></div>
+  <a href="/" class="nav-back">← Back to Home</a>
+  <button class="btn btn-mint" onclick="printPlan()">🖨 Print Week</button>
+</header>
+
+<div class="main">
+  <h2>📅 Weekly Follow-Up Planner</h2>
+  <p class="sub">Plan all your follow-up calls and messages for the week. Check them off as you go. Data saves automatically.</p>
+
+  <div class="stats-bar" id="statsBar"></div>
+
+  <div class="planner-actions">
+    <button class="btn btn-danger" onclick="clearCompleted()">🧹 Clear Completed</button>
+    <button class="btn btn-outline" style="border: 1px solid var(--gray-300); background:#fff;" onclick="resetWeek()">♻️ Reset Current Week</button>
+  </div>
+
+  <div class="week-nav">
+    <button onclick="changeWeek(-1)">← Previous Week</button>
+    <span class="week-label" id="weekLabel"></span>
+    <button onclick="changeWeek(1)">Next Week →</button>
+  </div>
+
+  <div class="week-grid" id="weekGrid"></div>
+</div>
+
+<script>
+const DAYS = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+const SHORT = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+let weekOffset = 0;
+let allTasks = JSON.parse(localStorage.getItem('lp_planner') || '{}');
+
+function getWeekStart(offset){
+  const d = new Date();
+  const day = d.getDay(); // 0=Sun
+  const diff = d.getDate() - day + (day===0 ? -6 : 1) + (offset * 7);
+  const mon = new Date(d.setDate(diff));
+  mon.setHours(0,0,0,0);
+  return mon;
+}
+
+function dateStr(d){ return d.toISOString().split('T')[0]; }
+
+function formatDate(d){ return d.toLocaleDateString('en-IN',{day:'numeric',month:'short'}); }
+
+function save(){ localStorage.setItem('lp_planner', JSON.stringify(allTasks)); }
+
+function render(){
+  const ws = getWeekStart(weekOffset);
+  const we = new Date(ws); we.setDate(we.getDate()+6);
+  document.getElementById('weekLabel').textContent = `${formatDate(ws)} — ${formatDate(we)}`;
+
+  const today = dateStr(new Date());
+  let total=0, done=0;
+
+  const grid = document.getElementById('weekGrid');
+  grid.innerHTML = '';
+
+  for(let i=0;i<7;i++){
+    const d = new Date(ws); d.setDate(d.getDate()+i);
+    const ds = dateStr(d);
+    const tasks = allTasks[ds] || [];
+    total += tasks.length;
+    done += tasks.filter(t=>t.done).length;
+    const isToday = ds===today;
+
+    const col = document.createElement('div');
+    col.className = 'day-col';
+    col.innerHTML = `
+      <div class="day-header${isToday?' today-h':''}">${DAYS[i]}<br>${formatDate(d)}${isToday?' (Today) ●':''}</div>
+      <div class="day-tasks" id="tasks-${ds}">
+        ${tasks.map((t,ti)=>`
+          <div class="task-item${t.done?' done':''}" id="ti-${ds}-${ti}">
+            <input type="checkbox" ${t.done?'checked':''} onchange="toggleTask('${ds}',${ti},this.checked)">
+            <span class="task-text" onclick="toggleTask('${ds}',${ti},${!t.done})">${t.text}</span>
+            <button class="del-t" onclick="deleteTask('${ds}',${ti})" title="Delete">✕</button>
+          </div>`).join('')}
+      </div>
+      <div class="add-task-row">
+        <input placeholder="+ Add task..." onkeydown="if(event.key==='Enter')addTask('${ds}',this)" id="inp-${ds}">
+      </div>`;
+    grid.appendChild(col);
+  }
+
+  const pct = total ? Math.round(done/total*100) : 0;
+  document.getElementById('statsBar').innerHTML = `
+    <div class="stat-pill">Tasks this week: &nbsp;<span class="stat-num">${total}</span></div>
+    <div class="stat-pill">Completed: &nbsp;<span class="stat-num">${done}</span></div>
+    <div class="stat-pill">Remaining: &nbsp;<span class="stat-num">${total-done}</span></div>
+    <div class="stat-pill">Progress: &nbsp;<span class="stat-num">${pct}%</span></div>`;
+}
+
+function addTask(ds, inp){
+  const text = inp.value.trim();
+  if(!text) return;
+  if(!allTasks[ds]) allTasks[ds]=[];
+  allTasks[ds].push({text, done:false});
+  inp.value='';
+  save(); render();
+}
+
+function toggleTask(ds, idx, val){
+  if(allTasks[ds] && allTasks[ds][idx]!==undefined){
+    allTasks[ds][idx].done = val;
+    save(); render();
+  }
+}
+
+function deleteTask(ds, idx){
+  if(allTasks[ds]){ allTasks[ds].splice(idx,1); save(); render(); }
+}
+
+function clearCompleted(){
+  const ws = getWeekStart(weekOffset);
+  let changed = false;
+  for(let i=0;i<7;i++){
+    const d = new Date(ws); d.setDate(d.getDate()+i);
+    const ds = dateStr(d);
+    if(allTasks[ds]){
+      allTasks[ds] = allTasks[ds].filter(t=>!t.done);
+      changed = true;
+    }
+  }
+  if(changed){ save(); render(); }
+}
+
+function resetWeek(){
+  if(confirm("Are you sure you want to delete all tasks for this week?")){
+    const ws = getWeekStart(weekOffset);
+    for(let i=0;i<7;i++){
+      const d = new Date(ws); d.setDate(d.getDate()+i);
+      const ds = dateStr(d);
+      delete allTasks[ds];
+    }
+    save(); render();
+  }
+}
+
+function changeWeek(n){ weekOffset += n; render(); }
+
+function printPlan(){ window.print(); }
+
+// Seed sample tasks for today if completely empty
+const todayStr = dateStr(new Date());
+if(!Object.keys(allTasks).length){
+  allTasks[todayStr] = [
+    {text:'Call Rahul Kapoor re: site visit', done:false},
+    {text:'WhatsApp Priya about plot documents', done:false},
+    {text:'Follow up with Anil — budget check', done:false},
+  ];
+  save();
+}
+render();
+</script>
+</body>
+</html>
